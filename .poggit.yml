@@ -1,17 +1,7 @@
 --- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/AlexBGames/3.0.0Alpha9-PocketMine-Plugins
 branches:
-- patch-1
+- patch-2
 projects:
-  FormAuth:
-    path: FormAuth/
-  FormShop:
-    path: FormShop/
-  KitUI:
-    path: KitUI/
-  MaskShop-UI:
-    path: MaskShop-UI/
   PlayerVaults:
     path: PlayerVaults/
-  ProfileUI:
-    path: ProfileUI/
 ...
