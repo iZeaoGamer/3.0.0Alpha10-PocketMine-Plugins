@@ -93,7 +93,7 @@ class FetchInventoryTask extends AsyncTask{
         if(empty($data)){
             $this->setResult([]);
         }else{
-            $nbt = new NBT(NBT::BIG_ENDIAN);
+            $nbt = NBT(NBT::BIG_ENDIAN);
             $nbt->readCompressed($data);
             $nbt = $nbt->getData();
             $items = $nbt->ItemList ?? [];
