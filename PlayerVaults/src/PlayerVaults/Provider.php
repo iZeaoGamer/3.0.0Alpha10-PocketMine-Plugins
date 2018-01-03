@@ -148,7 +148,7 @@ class Provider{
             $item = $item->nbtSerialize(-1, "Item");
         }
 
-        $nbt = new NetworkLittleEndianNBTStream();
+        $nbt = new BigEndianNBTStream(();
         $tag = new CompoundTag("Items", [
             "ItemList" => new ListTag("ItemList", $contents)
         ]);
