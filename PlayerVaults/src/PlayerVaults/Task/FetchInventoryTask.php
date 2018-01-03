@@ -26,7 +26,7 @@ namespace PlayerVaults\Task;
 use PlayerVaults\{PlayerVaults, Provider};
 
 use pocketmine\item\Item;
-use pocketmine\nbt\NetworkLittleEndianNBTStream;
+use pocketmine\nbt\BigEndianNBTStream;
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
 
@@ -93,7 +93,7 @@ class FetchInventoryTask extends AsyncTask{
         if(empty($data)){
             $this->setResult([]);
         }else{
-            $nbt = new NetworkLittleEndianNBTStream();
+            $nbt = new BigEndianNBTStream();
             $nbt->readCompressed($data);
             $nbt = $nbt->getData();
             $items = $nbt->ItemList ?? [];
