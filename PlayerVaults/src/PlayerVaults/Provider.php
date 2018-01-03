@@ -27,7 +27,7 @@ use PlayerVaults\Task\{DeleteVaultTask, FetchInventoryTask, SaveInventoryTask};
 use PlayerVaults\Vault\{Vault, VaultInventory};
 
 use pocketmine\block\Block;
-use pocketmine\nbt\NetworkLittleEndianNBTStream;
+use pocketmine\nbt\BigEndianNBTStream;
 use pocketmine\nbt\tag\{ByteTag, CompoundTag, IntTag, ListTag, StringTag};
 use pocketmine\Player;
 use pocketmine\tile\Tile;
