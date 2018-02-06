@@ -3,12 +3,12 @@
 *
 * Copyright (C) 2017 Muqsit Rayyan
 *
-*    ___ _                                        _ _       
-*   / _ \ | __ _ _   _  ___ _ __/\   /\__ _ _   _| | |_ ___ 
+*    ___ _                                        _ _
+*   / _ \ | __ _ _   _  ___ _ __/\   /\__ _ _   _| | |_ ___
 *  / /_)/ |/ _" | | | |/ _ \ "__\ \ / / _" | | | | | __/ __|
 * / ___/| | (_| | |_| |  __/ |   \ V / (_| | |_| | | |_\__ \
 * \/    |_|\__,_|\__, |\___|_|    \_/ \__,_|\__,_|_|\__|___/
-*                |___/                                      
+*                |___/
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU Lesser General Public License as published by
@@ -22,34 +22,27 @@
 *
 */
 namespace PlayerVaults;
-
 use PlayerVaults\Task\{DeleteVaultTask, FetchInventoryTask, SaveInventoryTask};
-use PlayerVaults\Vault\{Vault, VaultInventory};
-
 use pocketmine\block\Block;
 use pocketmine\nbt\{BigEndianNBTStream, NetworkLittleEndianNBTStream};
-use pocketmine\nbt\tag\{ByteTag, CompoundTag, IntTag, ListTag, StringTag};
+use pocketmine\nbt\tag\{CompoundTag, IntTag, ListTag, StringTag};
+use pocketmine\network\mcpe\protocol\BlockEntityDataPacket;
 use pocketmine\Player;
 use pocketmine\tile\Tile;
 use pocketmine\utils\TextFormat as TF;
-
 class Provider{
-
     const INVENTORY_HEIGHT = 2;
-
     const TYPE_FROM_STRING = [
         'json' => Provider::JSON,
         'yaml' => Provider::YAML,
         'yml' => Provider::YAML,
         'mysql' => Provider::MYSQL
     ];
-
     const JSON = 0;
     const YAML = 1;
     const MYSQL = 2;
     const UNKNOWN = 3;
-
-   /** @var array|string */
+    /** @var array|string */
     private $data;//data for provider
     /** @var Server */
     private $server;
@@ -59,8 +52,6 @@ class Provider{
     private $inventoryName = "";
     /** @var string[] */
     private $processing = [];//the vaults that are being saved, for safety
-
-
     public function __construct(int $type)
     {
         if($type === Provider::UNKNOWN){
@@ -68,11 +59,9 @@ class Provider{
             $type = Provider::JSON;
         }
         $this->type = $type;
-
         $core = PlayerVaults::getInstance();
         $this->server = $core->getServer();
         $this->setInventoryName($core->getFromConfig("vaultinv-name") ?? "");
-
         if(is_file($oldfile = $core->getDataFolder()."vaults.json")){
             $data = json_decode(file_get_contents($oldfile));
             $logger = $core->getLogger();
@@ -90,7 +79,6 @@ class Provider{
             }
             rename($oldfile, $oldfile.".bak");
         }
-
         switch($type){
             case Provider::JSON:
             case Provider::YAML:
@@ -100,9 +88,7 @@ class Provider{
                 $this->data = $core->getMysqlData();
                 break;
         }
-
     }
-    
     public function getType() : int
     {
         return $this->type;
@@ -113,58 +99,39 @@ class Provider{
             unset($this->processing[$player]);
         }
     }
-
     private function getInventoryName(int $vaultno) : string
     {
         return str_replace("{VAULTNO}", $vaultno, $this->inventoryName);
     }
-
     public function setInventoryName(string $name) : void
     {
         $this->inventoryName = $name;
     }
-
     public function sendContents($player, int $number = 1, ?string $viewer = null) : void
     {
-        $player = $player instanceof Player ? $player->getLowerCaseName() : strtolower($player);
-        if($viewer === null){
-            $viewer = $player;
-        }
-        $this->getServer()->getScheduler()->scheduleAsyncTask(new FetchInventoryTask($player, $this->type, $number, $viewer, $this->data));
+        $name = $player instanceof Player ? $player->getLowerCaseName() : strtolower($player);
+        $this->server->getScheduler()->scheduleAsyncTask(new FetchInventoryTask($name, $this->type, $number, $viewer ?? $name, $this->data));
     }
-
-    public function get(Player $player, array $contents, int $number = 1, string $vaultof = null) : VaultInventory
+    public function get(Player $player, array $contents, int $number = 1, ?string $vaultof = null) : ?VaultInventory
     {
-        if($vaultof === null){
-            $vaultof = $player->getLowerCaseName();
-            
-            if(isset($this->processing[$vaultof])){
-                $player->sendMessage(TF::RED."You cannot open this vault as it is already in use by ".TF::GRAY.$this->processing[$vaultof].TF::RED.".");
-                return null;
-                
-        $tile = Tile::createTile("Vault", $level = $player->getLevel(), new CompoundTag("", [
-            new StringTag("id", Tile::CHEST),
-            new StringTag("CustomName", $this->getInventoryName($number)),
-            new IntTag("x", (int) $player->x),
-            new IntTag("y", (int) $player->y + Provider::INVENTORY_HEIGHT),
-            new IntTag("z", (int) $player->z),
-            new ByteTag("Vault", 1),
-            new IntTag("VaultNumber", $number),
-            new StringTag("VaultOf", $vaultof)
-        ]));
-
-        $block = Block::get(Block::CHEST);
-        $block->x = (int) $tile->x;
-        $block->y = (int) $tile->y;
-        $block->z = (int) $tile->z;
-        $block->level = $level;
-        $block->level->sendBlocks([$player], [$block]);
-        $inventory = new VaultInventory($tile);
+        $vaultof = $vaultof ?? $player->getLowerCaseName();
+        if(isset($this->processing[$vaultof])){
+            $player->sendMessage(TF::RED."You cannot open this vault as it is already in use by ".TF::GRAY.$this->processing[$vaultof].TF::RED.".");
+            return null;
+        }
+        $this->processing[$vaultof] = $player->getLowerCaseName();
+        $pos = $player->asPosition();
+        //Position->floor() returns Vector3
+        $pos->x = (int) $pos->x;
+        $pos->z = (int) $pos->z;
+        $pos->y += Provider::INVENTORY_HEIGHT;
+        $pos->y = (int) $pos->y;
+        $pos->level->sendBlocks([$player], [Block::get(Block::CHEST, 0, $pos)]);
+        $inventory = new VaultInventory($pos, $vaultof, $number);
         $inventory->setContents($contents);
-        $tile->spawnTo($player);
+        $player->dataPacket($this->createVaultPacket($inventory, $this->getInventoryName($number)));
         return $inventory;
     }
-
     private function createVaultPacket(VaultInventory $inventory, ?string $inventoryName = null) : BlockEntityDataPacket
     {
         $pos = $inventory->getHolder();

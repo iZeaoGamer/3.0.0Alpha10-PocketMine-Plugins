@@ -21,7 +21,7 @@
 * GitHub: http://github.com/Muqsit
 *
 */
-namespace PlayerVaults;
+namespace PlayerVaults\Vault;
 
 use PlayerVaults\PlayerVaults;
 use pocketmine\inventory\ContainerInventory;
