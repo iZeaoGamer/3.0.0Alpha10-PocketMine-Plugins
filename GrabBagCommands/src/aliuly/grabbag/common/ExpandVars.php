@@ -106,7 +106,7 @@ class ExpandVars{
 	 * @param string $str
 	 * @param string $value
 	 */
-	public function define($str, $value){
+	public function define(string $str, string $value){
 		$this->consts[$str] = $value;
 	}
 
@@ -123,7 +123,7 @@ class ExpandVars{
 	 * @param string $apiname - API id
 	 * @param mixed  $ptr - API object
 	 */
-	public function registerApi($apiname, $ptr){
+	public function registerApi(string $apiname, $ptr){
 		$this->apitable[$apiname] = $ptr;
 	}
 
@@ -133,7 +133,7 @@ class ExpandVars{
 	 * @param bool   $exception - if true raise exemption on error
 	 * @return mixed
 	 */
-	public function api($apiname, $exception = true){
+	public function api(string $apiname, bool $exception = true){
 		if(isset($this->apitable[$apiname])) return $this->apitable[$apiname];
 		throw new \RuntimeException("Missing API " . $apiname);
 	}
@@ -142,7 +142,7 @@ class ExpandVars{
 	 * Scan loaded plugins and identifies which plugins have an entry
 	 * point to variable expansions...
 	 */
-	protected function autoloadExtensions($mode){
+	protected function autoloadExtensions(bool $mode){
 		$tab = [];
 		foreach($this->getServer()->getPluginManager()->getPlugins() as $plug){
 			if(!$plug->isEnabled()) continue;
@@ -224,7 +224,7 @@ class ExpandVars{
 	/**
 	 * @param array &$vars - variables
 	 */
-	public function debugSysVars(&$vars){
+	public function debugSysVars(array &$vars){
 		$server = $this->getServer();
 		// Enable debugging variables...
 		$time = floor(microtime(true) - \pocketmine\START_TIME);
@@ -452,7 +452,7 @@ class ExpandVars{
 	 * @param float $deg - yaw
 	 * @return string
 	 */
-	static public function bearing($deg){
+	static public function bearing(float $deg): string{
 		// Determine bearing
 		if(22.5 <= $deg && $deg < 67.5){
 			return "NW";

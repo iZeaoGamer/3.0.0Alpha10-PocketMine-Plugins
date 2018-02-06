@@ -19,7 +19,7 @@ abstract class BasicCli{
 	/**
 	 * @param BasicPlugin @owner - Plugin that owns this module
 	 */
-	public function __construct($owner){
+	public function __construct(BasicPlugin $owner){
 		$this->owner = $owner;
 	}
 
@@ -29,7 +29,7 @@ abstract class BasicCli{
 	 * @param string  $cmd - sub-command to register
 	 * @param mixed[] $opts - additional options for registering sub-command
 	 */
-	public function enableSCmd($cmd, $opts){
+	public function enableSCmd(string $cmd, $opts){
 		$this->owner->registerScmd($cmd, [$this, "onSCommand"], $opts);
 	}
 
@@ -39,7 +39,7 @@ abstract class BasicCli{
 	 * @param string  $cmd - command to register
 	 * @param mixed[] $yaml - options for command
 	 */
-	public function enableCmd($cmd, $yaml){
+	public function enableCmd(string $cmd, $yaml){
 		$newCmd = new PluginCommand($cmd, $this->owner);
 		if(isset($yaml["description"]))
 			$newCmd->setDescription($yaml["description"]);
@@ -72,7 +72,7 @@ abstract class BasicCli{
 	 * @param string[] $args - Passed arguments
 	 * @return int page number
 	 */
-	protected function getPageNumber(array &$args){
+	protected function getPageNumber(array &$args): int{
 		$pageNumber = 1;
 		if(count($args) && is_numeric($args[count($args) - 1])){
 			$pageNumber = (int) array_pop($args);
@@ -90,7 +90,7 @@ abstract class BasicCli{
 	 * @param string[]      $txt - Array containing one element per output line
 	 * @return bool true
 	 */
-	protected function paginateText(CommandSender $sender, $pageNumber, array $txt){
+	protected function paginateText(CommandSender $sender, int $pageNumber, array $txt): bool{
 		$hdr = array_shift($txt);
 		if($sender instanceof ConsoleCommandSender){
 			$sender->sendMessage(TextFormat::GREEN . $hdr . TextFormat::RESET);
@@ -123,7 +123,7 @@ abstract class BasicCli{
 	 * @param string[][]    $tab - Array containing one element per cell
 	 * @return bool true
 	 */
-	protected function paginateTable(CommandSender $sender, $pageNumber, array $tab){
+	protected function paginateTable(CommandSender $sender, int $pageNumber, array $tab): bool{
 		$cols = [];
 		for($i = 0; $i < count($tab[0]); $i++) $cols[$i] = strlen($tab[0][$i]);
 		foreach($tab as $row){

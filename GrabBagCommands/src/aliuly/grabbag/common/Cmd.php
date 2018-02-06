@@ -23,7 +23,7 @@ abstract class Cmd{
 	 * @param string[]|string      $cmd - commands to execute
 	 * @param bool                 $show - show commands being executed
 	 */
-	static public function exec($sender, $cmd, $show = true){
+	static public function exec(CommandSender $sender, string $cmd, bool $show = true){
 		if(!is_array($cmd)) $cmd = [$cmd];
 		foreach($cmd as $c){
 			if($show) $sender->sendMessage("CMD> $c");
@@ -38,7 +38,7 @@ abstract class Cmd{
 	 * @param string $cmd - command to execute
 	 * @return string
 	 */
-	static public function system($server, $cmd){
+	static public function system(Server $server, string $cmd): string{
 		$rcon = new RemoteConsoleCommandSender;
 		$server->distpatchCommand($rcon, $cmd);
 		return $rcon->getMessage();
@@ -50,7 +50,7 @@ abstract class Cmd{
 	 * @param Player|CommandSender $sender - Entity to impersonate
 	 * @param string[]|string      $msgs - messages to send
 	 */
-	static public function chat($sender, $msgs){
+	static public function chat(CommandSender $sender, string $msgs){
 		if(!is_array($msgs)) $msgs = [$msgs];
 		foreach($msgs as $msg){
 			$sender->getServer()->getPluginManager()->callEvent($ev = new PlayerChatEvent($sender, $msg));
@@ -77,7 +77,7 @@ abstract class Cmd{
 	 * @param string[]|string $cmd - commands to execute
 	 * @param bool            $show - show commands being executed
 	 */
-	static public function console($server, $cmd, $show = false){
+	static public function console(Server $server, string $cmd, bool $show = false){
 		if(!is_array($cmd)) $cmd = [$cmd];
 		foreach($cmd as $c){
 			if($show) $server->getLogger()->info("CMD> $cmd");
@@ -97,7 +97,7 @@ abstract class Cmd{
 	 * @param CommandSender $ctx - running context
 	 * @param string        $cmdline - command line to execute
 	 */
-	static public function opexec(CommandSender $ctx, $cmdline){
+	static public function opexec(CommandSender $ctx, string $cmdline){
 		if(($cm = MPMU::startsWith($cmdline, "+op:")) !== null){
 			if(!$ctx->isOp()){
 				$ctx->setOp(true);
@@ -133,7 +133,7 @@ abstract class Cmd{
 	 * @param string          $cmd - Command name
 	 * @param array           $yaml - Additional settings for this command.
 	 */
-	static public function addCommand($plugin, $executor, $cmd, $yaml){
+	static public function addCommand(Plugin $plugin, CommandExecutor $executor, string $cmd, array $yaml){
 		$newCmd = new PluginCommand($cmd, $plugin);
 		if(isset($yaml["description"]))
 			$newCmd->setDescription($yaml["description"]);
@@ -165,7 +165,7 @@ abstract class Cmd{
 	 * @param string        $cmd - Command name to remove
 	 * @return bool
 	 */
-	static public function rmCommand($srv, $cmd) : bool{
+	static public function rmCommand(Plugin $srv, string $cmd) : bool{
 		$cmdMap = $srv->getCommandMap();
 		$oldCmd = $cmdMap->getCommand($cmd);
 		if($oldCmd === null) return false;

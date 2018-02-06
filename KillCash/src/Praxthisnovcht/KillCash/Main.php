@@ -16,7 +16,7 @@ class Main extends PluginBase implements Listener{
 
 	public $economy = false;
 
-	public function onEnable(){
+	public function onEnable(): void{
 		@mkdir($this->getDataFolder());
 
 		$this->config = new Config($this->getDataFolder()."config.yml", Config::YAML, array(
@@ -61,7 +61,7 @@ class Main extends PluginBase implements Listener{
         }
 	}
 }
-	public function onDisable(){
+	public function onDisable(): void{
 		$this->getLogger()->info(TextFormat::RED."KillCash unloaded!");
 	}
 

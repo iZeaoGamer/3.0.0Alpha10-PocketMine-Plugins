@@ -49,7 +49,7 @@ class GrabBag{
 	 * @param string $module - module name
 	 * @return mixed|null
 	 */
-	public function getModule($module){
+	public function getModule(string $module): null{
 		$vp = $this->plugin->getModule($module);
 		if($vp === null) throw new \RuntimeException("Missing module: " . $module);
 		return $vp;
@@ -61,7 +61,7 @@ class GrabBag{
 	 * @param string $feature - module name
 	 * @return bool
 	 */
-	public function getFeature($feature){
+	public function getFeature(string $feature): bool{
 		if(!in_array($feature, [
 			"freeze-thaw", "invisible", "after-at", "cmd-alias", "blowup",
 			"chat-utils", "followers", "mute-unmute", "opms-rpt", "reop",
@@ -100,7 +100,7 @@ class GrabBag{
 	 * Checks if hard or soft freezing
 	 * @return bool
 	 */
-	public function isHardFreeze(){
+	public function isHardFreeze(): bool{
 		return $this->getModule("freeze-thaw")->isHardFreeze();
 	}
 
@@ -108,7 +108,7 @@ class GrabBag{
 	 * Sets hard or soft freezing
 	 * @param bool $hard - if true (default) hard freeze is in effect.
 	 */
-	public function setHardFreeze($hard = true){
+	public function setHardFreeze(bool $hard = true){
 		$this->getModule("freeze-thaw")->setHardFreeze($hard);
 	}
 
@@ -117,7 +117,7 @@ class GrabBag{
 	 * @param Player $player - player to freeze
 	 * @param bool   $freeze - if true (default) freeze, if false, thaw.
 	 */
-	public function freeze(Player $player, $freeze = true){
+	public function freeze(Player $player, bool $freeze = true){
 		$this->getModule("freeze-thaw")->freeze($player, $freeze);
 	}
 
@@ -136,7 +136,7 @@ class GrabBag{
 	 * @param Player $player - player to change
 	 * @param bool   $invis - if true (default) invisible, if false, visible.
 	 */
-	public function invisible(Player $player, $invis){
+	public function invisible(Player $player, bool $invis){
 		if($invis){
 			if(!$this->getModule("invisible")->isInvisible($player))
 				$this->getModule("invisible")->activate($player);
@@ -162,7 +162,7 @@ class GrabBag{
 	 * @param int    $secs - execute after this number of seconds
 	 * @param string $cmdline - command line to execute
 	 */
-	public function after($cmdline, $secs){
+	public function after(string $cmdline, int $secs){
 		$this->getModule("after-at")->schedule($secs, $cmdline);
 	}
 	//////////////////////////////////////////////////////////////
@@ -175,7 +175,7 @@ class GrabBag{
 	 * @param bool   $force - overwrite existing commands
 	 * @return bool - true on succes, false on failure
 	 */
-	public function alias($alias, $cmdline, $force = false){
+	public function alias(string $alias, string $cmdline, bool $force = false): bool{
 		return $this->getModule("cmd-alias")->addAlias($alias, $cmdline, $force);
 	}
 	//////////////////////////////////////////////////////////////
@@ -188,7 +188,7 @@ class GrabBag{
 	 * @param bool   $magic - don't affect blocks
 	 * @return bool - true on succes, false on failure
 	 */
-	public function blowPlayer(Player $player, $yield, $magic = false){
+	public function blowPlayer(Player $player, int $yield, bool $magic = false): bool{
 		return $this->getModule("blowup")->blowPlayer($player, $yield, $magic);
 	}
 	//////////////////////////////////////////////////////////////
@@ -198,7 +198,7 @@ class GrabBag{
 	 * Enable/Disable Chat globally
 	 * @param bool $mode - true, chat is active, false, chat is disabled
 	 */
-	public function setGlobalChat($mode){
+	public function setGlobalChat(bool $mode){
 		$this->getModule("chat-utils")->setGlobalChat($mode);
 	}
 
@@ -206,7 +206,7 @@ class GrabBag{
 	 * Returns global chat status
 	 * @return bool
 	 */
-	public function getGlobalChat(){
+	public function getGlobalChat(): bool{
 		return $this->getModule("chat-utils")->getGlobalChat();
 	}
 
@@ -215,7 +215,7 @@ class GrabBag{
 	 * @param Player $player
 	 * @param bool   $mode - true, chat is active, false, chat is disabled
 	 */
-	public function setPlayerChat(Player $player, $mode){
+	public function setPlayerChat(Player $player, bool $mode){
 		$this->getModule("chat-utils")->setPlayerChat($player, $mode);
 	}
 
@@ -224,7 +224,7 @@ class GrabBag{
 	 * @param Player $player
 	 * @return bool
 	 */
-	public function getPlayerChat(Player $player){
+	public function getPlayerChat(Player $player): bool{
 		return $this->getModule("chat-utils")->getPlayerChat($player);
 	}
 	//////////////////////////////////////////////////////////////
@@ -287,7 +287,7 @@ class GrabBag{
 	 * @param Player $player
 	 * @param bool   $mode - true is muted, false is unmuted
 	 */
-	public function setMute(Player $player, $mode){
+	public function setMute(Player $player, bool $mode){
 		$this->getModule("mute-unmute")->setMute($player, $mode);
 	}
 
@@ -296,7 +296,7 @@ class GrabBag{
 	 * @param Player $player
 	 * @return bool
 	 */
-	public function getMute(Player $player){
+	public function getMute(Player $player): bool{
 		return $this->getModule("mute-unmute")->getMute($player);
 	}
 	//////////////////////////////////////////////////////////////
@@ -307,7 +307,7 @@ class GrabBag{
 	 * @param CommandSender $c
 	 * @param string        $report
 	 */
-	public function fileReport(CommandSender $c, $report){
+	public function fileReport(CommandSender $c, string $report){
 		$this->getModule("opms-rpt")->rptCmd($player, [">", $report]);
 	}
 	//////////////////////////////////////////////////////////////
@@ -318,7 +318,7 @@ class GrabBag{
 	 * @param Player $target
 	 * @return bool
 	 */
-	public function isReOp(Player $target){
+	public function isReOp(Player $target): bool{
 		return $this->getModule("reop")->isReOp($target);
 	}
 
@@ -337,7 +337,7 @@ class GrabBag{
 	 * @param Player $target
 	 * @return bool
 	 */
-	public function isShielded(Player $target){
+	public function isShielded(Player $target): bool{
 		return $this->getModule("shield")->isShielded($target);
 	}
 
@@ -346,7 +346,7 @@ class GrabBag{
 	 * @param Player $target
 	 * @param bool   $mode - true is shielded, false is not
 	 */
-	public function setShield(Player $target, $mode){
+	public function setShield(Player $target, bool $mode){
 		$this->getModule("shield")->setShield($target, $mode);
 	}
 	//////////////////////////////////////////////////////////////
@@ -357,7 +357,7 @@ class GrabBag{
 	 * @param string $folder - folder to search
 	 * @return string[]
 	 */
-	public function getSkins($folder = null){
+	public function getSkins(string $folder = null){
 		return $this->getModule("skinner")->getSkins($folder);
 	}
 
@@ -369,7 +369,7 @@ class GrabBag{
 	 * @return int - bytes written
 	 *
 	 */
-	public function saveSkin(Human $human, $fn, $folder = null){
+	public function saveSkin(Human $human, string $fn, string $folder = null): int{
 		return $this->getModule("skinner")->saveSkin($human, $fn, $folder);
 	}
 
@@ -381,7 +381,7 @@ class GrabBag{
 	 * @return bool - true on succes, false on failure
 	 *
 	 */
-	public function loadSkin(Human $human, $fn, $folder = null){
+	public function loadSkin(Human $human, string $fn, string $folder = null): bool{
 		return $this->getModule("skinner")->loadSkin($human, $fn, $folder);
 	}
 	//////////////////////////////////////////////////////////////
@@ -392,7 +392,7 @@ class GrabBag{
 	 * @param Player $victim
 	 * @param string $msg
 	 */
-	public function slay(Player $victim, $msg = ""){
+	public function slay(Player $victim, string $msg = ""){
 		$this->getModule("slay")->slay($victim, $msg);
 	}
 	//////////////////////////////////////////////////////////////
@@ -412,7 +412,7 @@ class GrabBag{
 	 * Return the current service mode status
 	 * @return false|string
 	 */
-	public function getServiceMode(){
+	public function getServiceMode(): string{
 		return $this->getModule("srvmode")->getServiceMode();
 	}
 
@@ -420,7 +420,7 @@ class GrabBag{
 	 * Change the service mode
 	 * @param string $msg
 	 */
-	public function setServiceMode($msg){
+	public function setServiceMode(string $msg){
 		$this->getModule("srvmode")->setServiceMode($msg);
 	}
 
@@ -503,7 +503,7 @@ class GrabBag{
 	 * @param array  $attrs - Server attributes
 	 * @return bool - true on success, false on error
 	 */
-	public function addServer($id, array $attrs){
+	public function addServer(string $id, array $attrs): bool{
 		return $this->getModule("ServerList")->addServer($id, $attrs);
 	}
 
@@ -512,7 +512,7 @@ class GrabBag{
 	 * @param string $id - Server Id
 	 * @return bool - true on success, false on error
 	 */
-	public function removeServer($id){
+	public function removeServer(string $id): bool{
 		return $this->getModule("ServerList")->rmServer($id);
 	}
 
@@ -521,7 +521,7 @@ class GrabBag{
 	 * @param string $id - Server Id
 	 * @return array - attributes
 	 */
-	public function getServer($id){
+	public function getServer(string $id): array{
 		return $this->getModule("ServerList")->getServer($id);
 	}
 	//

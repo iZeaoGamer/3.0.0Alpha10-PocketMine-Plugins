@@ -30,7 +30,7 @@ abstract class BasicPlugin extends PluginBase{
 	 * @param string $xhlp - optional help format.
 	 * @return array
 	 */
-	protected function modConfig($ns, $mods, $defaults, $xhlp = ""): array{
+	protected function modConfig(string $ns, array $mods, array $defaults, string $xhlp = ""): array{
 		if(!isset($defaults["features"])) $defaults["features"] = [];
 		foreach($mods as $i => $j){
 			$defaults["features"][$i] = $j[1];
@@ -86,7 +86,7 @@ abstract class BasicPlugin extends PluginBase{
 	 * @param string $module - module to retrieve
 	 * @return mixed|null
 	 */
-	public function getModule($str){
+	public function getModule(string $str): null{
 		if(isset($this->modules[$str])) return $this->modules[$str];
 		return null;
 	}
@@ -97,7 +97,7 @@ abstract class BasicPlugin extends PluginBase{
 	 * @param string $key - section to save
 	 * @param mixed  $settings - settings to save
 	 */
-	public function cfgSave($key, $settings){
+	public function cfgSave(string $key, $settings){
 		$cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 		$dat = $cfg->getAll();
 		$dat[$key] = $settings;
@@ -119,7 +119,7 @@ abstract class BasicPlugin extends PluginBase{
 	/** Look-up sub command map
 	 * @returns SubCommandMap
 	 */
-	public function getSCmdMap(){
+	public function getSCmdMap(): SubCommandMap{
 		return $this->scmdMap;
 	}
 
@@ -129,7 +129,7 @@ abstract class BasicPlugin extends PluginBase{
 	 * @param callable $callable - callable to execute
 	 * @param array    $opts - additional options
 	 */
-	public function registerSCmd($cmd, $callable, $opts){
+	public function registerSCmd(string $cmd, callable $callable, array $opts){
 		if($this->scmdMap === null){
 			$this->scmdMap = new SubCommandMap();
 		}
@@ -144,7 +144,7 @@ abstract class BasicPlugin extends PluginBase{
 	 * @param mixed         $default - default value to return is no state found
 	 * @return mixed
 	 */
-	public function getState($label, $player, $default){
+	public function getState(string $label, Player $player, $default){
 		if($this->session === null) return $default;
 		return $this->session->getState($label, $player, $default);
 	}
@@ -157,7 +157,7 @@ abstract class BasicPlugin extends PluginBase{
 	 * @param mixed         $val - value to set
 	 * @return mixed
 	 */
-	public function setState($label, $player, $val){
+	public function setState(string $label, Player $player, $val){
 		if($this->session === null) $this->session = new Session($this);
 		return $this->session->setState($label, $player, $val);
 	}
@@ -168,7 +168,7 @@ abstract class BasicPlugin extends PluginBase{
 	 * @param string        $label - state variable to clear
 	 * @param Player|string $player - instance of Player or their name
 	 */
-	public function unsetState($label, $player){
+	public function unsetState(string $label, Player $player){
 		if($this->session === null) return;
 		$this->session->unsetState($label, $player);
 	}
@@ -179,7 +179,7 @@ abstract class BasicPlugin extends PluginBase{
 	 * @param string $filename
 	 * @return string|null
 	 */
-	public function getResourceContents($filename){
+	public function getResourceContents(string $filename): string{
 		$fp = $this->getResource($filename);
 		if($fp === null){
 			return null;

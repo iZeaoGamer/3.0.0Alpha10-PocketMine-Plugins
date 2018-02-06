@@ -63,19 +63,19 @@ class CmdChatMgr extends BasicCli implements Listener, CommandExecutor{
 		$this->owner->getServer()->getPluginManager()->registerEvents($this, $this->owner);
 	}
 
-	public function setGlobalChat($mode){
+	public function setGlobalChat(bool $mode){
 		$this->chat = $mode;
 	}
 
-	public function getGlobalChat(){
+	public function getGlobalChat(): string{
 		return $this->chat;
 	}
 
-	public function setPlayerChat($player, $mode){
+	public function setPlayerChat(string $player, bool $mode){
 		$this->setState($player, !$mode);
 	}
 
-	public function getPlayerChat($player){
+	public function getPlayerChat(Player $player){
 		return !$this->getState($to, false);
 	}
 

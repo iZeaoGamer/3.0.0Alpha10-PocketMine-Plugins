@@ -51,7 +51,7 @@ abstract class CmdSelector{
 	 * @param int           $max - max number of expansions
 	 * @return string[]|false
 	 */
-	static public function expandSelectors(Server $server, CommandSender $sender, $cmdline, $max = 100){
+	static public function expandSelectors(Server $server, CommandSender $sender, string $cmdline, int $max = 100): array{
 		$tokens = preg_split('/\s+/', $cmdline);
 
 		$res = [$tokens];

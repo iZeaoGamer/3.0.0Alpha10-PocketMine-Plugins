@@ -13,7 +13,7 @@ class CommandHub extends Command{
 		parent::__construct("hub", "", null);
 		}
 		
-		public function execute(CommandSender $sender, $label, array $args){
+		public function execute(CommandSender $sender, string $label, array $args): bool{
 			if($sender instanceof Player){
 				$player = $sender;
 				$lobby = JoinSystem::getInstance()->getConfig()->get("Lobby");

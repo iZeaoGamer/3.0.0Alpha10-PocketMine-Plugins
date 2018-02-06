@@ -31,7 +31,7 @@ class BasicHelp extends BasicCli{
 	 * @param string[]      $args - arguments for sub-command
 	 * @return bool
 	 */
-	public function onSCommand(CommandSender $c, Command $cc, $scmd, $data, array $args){
+	public function onSCommand(CommandSender $c, Command $cc, string $scmd, $data, array $args): bool{
 		$cm = $this->owner->getSCmdMap();
 		$pageNumber = $this->getPageNumber($args);
 

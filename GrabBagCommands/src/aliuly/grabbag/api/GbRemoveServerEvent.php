@@ -24,7 +24,7 @@ class GbRemoveServerEvent extends GrabBagEvent implements Cancellable{
 	 * Returns the server id
 	 * @return string
 	 */
-	public function getId(){
+	public function getId(): string{
 		return $this->serverId;
 	}
 
@@ -32,7 +32,7 @@ class GbRemoveServerEvent extends GrabBagEvent implements Cancellable{
 	 * Sets the server id
 	 * @param string $id
 	 */
-	public function setId($id){
+	public function setId(string $id){
 		$this->serverId = $id;
 	}
 }

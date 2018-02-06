@@ -11,7 +11,7 @@ abstract class FileUtils{
 	 * @param string $dst source path
 	 * @return bool
 	 */
-	static public function cp_r($src, $dst){
+	static public function cp_r(string $src, string $dst): bool{
 		if(is_link($src)){
 			$l = readlink($src);
 			if(!symlink($l, $dst)) return false;
@@ -34,7 +34,7 @@ abstract class FileUtils{
 	 * @param string $path
 	 * @return bool
 	 */
-	static public function rm_r($path){
+	static public function rm_r(string $path): bool{
 		if(!is_link($path) && is_dir($path)){
 			$objects = scandir($path);
 			if($objects === false) return false;

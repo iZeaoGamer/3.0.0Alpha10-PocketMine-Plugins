@@ -18,7 +18,7 @@ class GbAddServerEvent extends GrabBagEvent implements Cancellable{
 	 * @param string        $id - server id
 	 * @param array         $attrs - server attributes
 	 */
-	public function __construct(GrabBagPlugin $plugin, $id, $attrs){
+	public function __construct(GrabBagPlugin $plugin, string $id, array $attrs){
 		parent::__construct($plugin);
 		$this->serverId = $id;
 		$this->serverAttrs = $attrs;
@@ -28,7 +28,7 @@ class GbAddServerEvent extends GrabBagEvent implements Cancellable{
 	 * Returns the server id
 	 * @return string
 	 */
-	public function getId(){
+	public function getId(): string{
 		return $this->serverId;
 	}
 
@@ -36,7 +36,7 @@ class GbAddServerEvent extends GrabBagEvent implements Cancellable{
 	 * Sets the server id
 	 * @param string $id
 	 */
-	public function setId($id){
+	public function setId(string $id){
 		$this->serverId = $id;
 	}
 
@@ -44,7 +44,7 @@ class GbAddServerEvent extends GrabBagEvent implements Cancellable{
 	 * Gets the server attributes
 	 * @return array
 	 */
-	public function getAttrs(){
+	public function getAttrs(): array{
 		return $this->serverAttrs;
 	}
 
@@ -52,7 +52,7 @@ class GbAddServerEvent extends GrabBagEvent implements Cancellable{
 	 * Sets the server attributes
 	 * @param array $attrs
 	 */
-	public function setAttrs($attrs){
+	public function setAttrs(array $attrs){
 		$this->serverAttrs = $attrs;
 	}
 }

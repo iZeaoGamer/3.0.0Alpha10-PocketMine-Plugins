@@ -60,7 +60,7 @@ abstract class ArmorItems{
 	 * @param string $str - string to parse
 	 * @return int
 	 */
-	static public function str2quality($str){
+	static public function str2quality(string $str): int{
 		switch(strtolower(substr($str, 0, 1))){
 			case "l"://eather
 				return self::LEATHER;
@@ -84,7 +84,7 @@ abstract class ArmorItems{
 	 * @param int $p - armor part
 	 * @return int
 	 */
-	static public function getItemId($q, $p){
+	static public function getItemId(int $q, int $p): int{
 		if($p < self::HEAD || $p > self::BOOTS) return self::ERROR;
 		switch($q){
 			case self::LEATHER:
@@ -104,7 +104,7 @@ abstract class ArmorItems{
 	 * @param int $item - item id
 	 * @return int
 	 */
-	static public function getArmorPart($item){
+	static public function getArmorPart(int $item): int{
 		switch($item){
 			case Item::LEATHER_CAP:
 				return self::HEAD;

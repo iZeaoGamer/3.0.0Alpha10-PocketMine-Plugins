@@ -32,13 +32,13 @@ use HealthStatus\Main;
 
 class Task extends PluginTask {
 
-    public function __construct(Main $plugin, $player) {
+    public function __construct(Main $plugin, Player $player) {
         parent::__construct($plugin);
         $this->plugin = $plugin;
         $this->player = $player;
     }
     
-    public function onRun($tick) {
+    public function onRun(int $tick) {
         $this->plugin = $this->getOwner();
         $this->plugin->setHealthNametag($this->player);
     }

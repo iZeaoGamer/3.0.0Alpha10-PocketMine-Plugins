@@ -37,17 +37,17 @@ use pocketmine\Player;
 
 class Main extends PluginBase implements Listener {
 
-    public function onEnable() {
+    public function onEnable(): void {
         $this->saveDefaultConfig();
         $this->registerEvents();
         $this->getLogger()->info(TextFormat::GREEN . "HealthStatus Beta By CrazedMiner Enabled!");
     }
 
-    public function onDisable() {
+    public function onDisable(): void {
         $this->getLogger()->info(TextFormat::GREEN . "HealthStatus Beta By CrazedMiner Disabled!");
     }
     
-    public function registerEvents() {
+    public function registerEvents(): void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         if(is_dir($this->getServer()->getPluginPath() . "PureChat")){
             $this->getServer()->getPluginManager()->registerEvents(new GroupChange($this), $this);
@@ -57,7 +57,7 @@ class Main extends PluginBase implements Listener {
         }
     }
     
-    public function translateColors($symbol, $message){
+    public function translateColors(string $symbol, string $message){
 	
         $message = str_replace($symbol."0", TextFormat::BLACK, $message);
         $message = str_replace($symbol."1", TextFormat::DARK_BLUE, $message);

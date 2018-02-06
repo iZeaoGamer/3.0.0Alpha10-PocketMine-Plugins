@@ -20,7 +20,7 @@ class JoinSystem extends PluginBase implements Listener{
 	
 	public static $instance;
 	
-	public function onEnable(){
+	public function onEnable(): void{
 		$this->getLogger()->info(self::PREFIX . " by §6McpeBooster§7!");
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->saveDefaultConfig();
@@ -44,15 +44,15 @@ class JoinSystem extends PluginBase implements Listener{
 		$this->getServer()->loadLevel($this->getConfig()->get("Lobby"));
 	}
 	
-	public static function getInstance(){
+	public static function getInstance(): JoinSystem{
 		return self::$instance;
 	}
 	
-	private function registerCommands(){
+	private function registerCommands(): void{
 		$this->getServer()->getCommandMap()->register("hub", new CommandHub());
 	}
 	
-	private function registerEvents(){
+	private function registerEvents(): void{
 		$this->getServer()->getPluginManager()->registerEvents(new PlayerJoin(), $this);
 		$this->getServer()->getPluginManager()->registerEvents(new PlayerQuit(), $this);
 	}

@@ -28,7 +28,7 @@ abstract class ItemName{
 	 * @param string $f - Filename to load
 	 * @return int
 	 */
-	public static function loadUsrNames($f){
+	public static function loadUsrNames(string $f): int{
 		$tx = file($f, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 		$i = 0;
 		if($tx === false) return -1;
@@ -100,7 +100,7 @@ abstract class ItemName{
 	 * @param Item $item
 	 * @return string
 	 */
-	static public function str(Item $item){
+	static public function str(Item $item): string{
 		$id = $item->getId();
 		$meta = $item->getDamage();
 		if(isset(self::$usrnames[$id . ":" . $meta])) return self::$usrnames[$id . ":" . $meta];
