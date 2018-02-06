@@ -27,7 +27,7 @@ class KitInfo extends Window {
 			];
 		}
 		
-	private function select($index){
+	private function select(string $index){
 		$windowHandler = new Handler();
 		switch($index){
 			case "true\n":

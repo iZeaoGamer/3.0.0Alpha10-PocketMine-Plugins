@@ -136,7 +136,7 @@ class Kit{
         return $this->pl->language->getTranslation("timer-format3", $minutes / 60);
     }
 
-    public function processTimer(){
+    public function processTimer(): bool{
         foreach($this->timers as $player => $min){
             $this->timers[$player] -= 1;
             if($this->timers[$player] <= 0){

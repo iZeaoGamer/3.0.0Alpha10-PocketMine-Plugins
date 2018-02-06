@@ -27,7 +27,7 @@ use pocketmine\network\mcpe\protocol\{AdventureSettingsPacket};
 
 class KnockbackFFA extends PluginBase implements Listener{
 	
-	public function onEnable() {
+	public function onEnable(): void{
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		
 		$this->saveDefaultConfig();
@@ -58,7 +58,7 @@ class KnockbackFFA extends PluginBase implements Listener{
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new checkLevel($this), 20);
 	}
 	
-	public function onLoad(){
+	public function onLoad(): void{
 		$players = $this->getServer()->getOnlinePlayers();
 		$time = time(date("H"), date("i"), date("s"));
 		foreach($players as $p){
@@ -441,7 +441,7 @@ class KnockbackFFA extends PluginBase implements Listener{
 		}
 	}
 	
-	public function onCommand(CommandSender $sender, Command $command, $label, array $args) : bool{
+	public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
 		if(strtolower($command->getName()) === "knockbackffa" || strtolower($command->getName()) === "kbf"){
 			if($sender instanceof Player){
 				$player = $sender;

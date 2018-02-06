@@ -22,7 +22,7 @@ class Main extends PluginBase implements Listener {
   public $kitused = [];
   public $language;
 	
-    public function onEnable(){
+    public function onEnable(): void{
       @mkdir($this->getDataFolder()."timer/");
       $this->getServer()->getLogger()->notice("[KitUI] Enabled! - By Infernus101");
       $this->configFixer();
@@ -44,7 +44,7 @@ class Main extends PluginBase implements Listener {
       }
     }
 	
-    public function onDisable(){
+    public function onDisable(): void{
       foreach($this->kits as $kit){
         $kit->save();
       }
@@ -98,7 +98,7 @@ class Main extends PluginBase implements Listener {
           }
       }
 
-    public function getPlayerKit($player, $obj = false){
+    public function getPlayerKit(Player $player, Plugin $obj = false){
           if($player instanceof Player){
         $player = $player->getName();
       }
