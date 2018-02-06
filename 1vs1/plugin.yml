@@ -1,0 +1,11 @@
+name: 1vs1
+main: Minifixio\onevsone\OneVsOne
+version: 0.0.5
+api:
+ - 3.0.0-ALPHA10
+ - 3.0.0-ALPHA11
+description: 1vs1 Plugin
+permissions:
+  onevsone.refarena:
+    description: "Allows using /refarena"
+    default: op

@@ -46,7 +46,7 @@ class AnalyticsSend extends AsyncTask{
 	 *
 	 * @return void
 	 */
-	public function onRun(){
+	public function onRun(): void{
 		$ctx = curl_init(self::ANALYTICS_URL);
 		curl_setopt($ctx, CURLOPT_HTTPHEADER, ["X-Buycraft-Secret: " . $this->secret, "User-Agent: BuycraftPM", 'Content-Type: application/json']);
 		curl_setopt($ctx, CURLOPT_RETURNTRANSFER, true);
@@ -65,7 +65,7 @@ class AnalyticsSend extends AsyncTask{
 		}
 	}
 
-	public function onCompletion(Server $server){
+	public function onCompletion(Server $server): void{
 		$err = $this->getResult();
 		if($err){
 			BuycraftPlugin::getInstance()->getLogger()->warning("Unable to send analytics: " . $err);

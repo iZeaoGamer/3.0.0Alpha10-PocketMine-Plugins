@@ -45,7 +45,7 @@ class ShopCommand extends Command implements PluginIdentifiableCommand
      *
      * @return mixed
      */
-    function execute(CommandSender $sender, string $commandLabel, array $args)
+   function execute(CommandSender $sender, string $commandLabel, array $args) : bool
     {
         if ($sender instanceof Player) $this->getHome()->getForms()->mainShopForm($sender);
         return;

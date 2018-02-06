@@ -50,7 +50,7 @@ class ReportUtil{
 	 * Generates the service status lines (this has to be done in an async task for obvious reasons).
 	 * @return array
 	 */
-	public static function generateServiceStatus(){
+	public static function generateServiceStatus(): array{
 		$checks = [
 			// Notice that we're not using just plugin.buycraft.net. That's because it throws an error. We'll compromise
 			// and use the PocketMine versions page.

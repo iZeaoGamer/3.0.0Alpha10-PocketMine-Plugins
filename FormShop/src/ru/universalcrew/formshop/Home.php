@@ -49,7 +49,7 @@ class Home extends PluginBase
      */
     private $forms;
 
-    function onEnable()
+    function onEnable(): void
     {
         $this->getLogger()->info("FormShop включен.");
         $this->loadPlugins();
@@ -57,7 +57,7 @@ class Home extends PluginBase
         $this->initCommands();
     }
 
-    private function loadClass()
+    private function loadClass(): void
     {
         $this->provider = new Provider($this);
         $this->pay = new Pay($this);
@@ -131,7 +131,7 @@ class Home extends PluginBase
         return $this->forms;
     }
 
-    function onDisable()
+    function onDisable(): void
     {
         $this->getLogger()->info("FormShop выключен.");
     }

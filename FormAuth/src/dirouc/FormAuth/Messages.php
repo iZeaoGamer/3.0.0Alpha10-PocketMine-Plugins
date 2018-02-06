@@ -44,12 +44,12 @@ class Messages {
         return null;
     }
 
-    public function getVersion() {
+    public function getVersion(): void {
         $version = $this->messages->get("messages-version");
         return $version;
     }
 
-    public function loadMessages() {
+    public function loadMessages(): void {
         $defaultLang = $this->plugin->getConfig()->get("default-language");
 
         foreach($this->langList as $langName) {
@@ -79,7 +79,7 @@ class Messages {
         }
     }
 
-    public function reloadMessages() {
+    public function reloadMessages(): void {
         $this->messages->reload();
     }
 

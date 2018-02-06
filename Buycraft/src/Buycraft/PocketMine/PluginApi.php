@@ -14,7 +14,7 @@ class PluginApi{
 	 * @param $secret string
 	 * @param $dataFolder string
 	 */
-	public function __construct($secret, $dataFolder){
+	public function __construct($secret, string $dataFolder, string){
 		$this->secret = $secret;
 		$this->dataFolder = $dataFolder;
 	}
@@ -25,7 +25,7 @@ class PluginApi{
 	 * @return mixed
 	 * @throws \Exception
 	 */
-	public function basicGet($endpoint){
+	public function basicGet($endpoint, string){
 		// Do a basic GET request
 		$ctx = $this->initializeCurl(self::BUYCRAFT_PLUGIN_API_URL . $endpoint);
 		$body = curl_exec($ctx);
@@ -59,7 +59,7 @@ class PluginApi{
 	 * @param $url string
 	 * @return resource
 	 */
-	private function initializeCurl($url){
+	private function initializeCurl($url, string): resource{
 		$ctx = curl_init($url);
 		curl_setopt($ctx, CURLOPT_HTTPHEADER, ["X-Buycraft-Secret: " . $this->secret, "User-Agent: BuycraftPM"]);
 		curl_setopt($ctx, CURLOPT_RETURNTRANSFER, true);

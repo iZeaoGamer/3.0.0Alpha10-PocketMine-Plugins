@@ -17,7 +17,7 @@ class Main extends PluginBase {
     /** String */
     private $prefix = "";
     
-    public function onEnable() {
+    public function onEnable(): void {
         @mkdir($this->getDataFolder());
         $this->saveResource("messages.yml");
         $this->lang = new Config($this->getDataFolder()."messages.yml", Config::YAML,
@@ -42,7 +42,7 @@ class Main extends PluginBase {
        $this->getLogger()->info("Enabled");
    }
 
-    public function onDisable() {
+    public function onDisable(): void {
      #$this->getConfig()->save();
      $this->getLogger()->info("Disabled");
    }

@@ -20,11 +20,11 @@ class BuycraftPlugin extends PluginBase{
 	/**
 	 * @return BuycraftPlugin
 	 */
-	public static function getInstance(){
+	public static function getInstance(): BuycraftPlugin{
 		return self::$instance;
 	}
 
-	public function onEnable(){
+	public function onEnable(): void{
 		// Ensure cURL is available and supports SSL.
 		if(!extension_loaded("curl")){
 			$this->getLogger()->error("BuycraftPM requires the curl extension to be installed with SSL support. Halting...");
@@ -83,28 +83,28 @@ class BuycraftPlugin extends PluginBase{
 		AnalyticsSend::sendAnalytics($this);
 	}
 
-	public function onDisable(){
+	public function onDisable(): void{
 		$this->saveConfig();
 	}
 
 	/**
 	 * @return PluginApi
 	 */
-	public function getPluginApi(){
+	public function getPluginApi(): PluginApi{
 		return $this->pluginApi;
 	}
 
 	/**
 	 * @return CommandExecutor
 	 */
-	public function getCommandExecutionTask(){
+	public function getCommandExecutionTask(): CommandExecutor{
 		return $this->commandExecutionTask;
 	}
 
 	/**
 	 * @return DeleteCommandsTask
 	 */
-	public function getDeleteCommandsTask(){
+	public function getDeleteCommandsTask(): DeleteCommandsTask{
 		return $this->deleteCommandsTask;
 	}
 

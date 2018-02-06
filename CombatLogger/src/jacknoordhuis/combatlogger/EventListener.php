@@ -50,7 +50,7 @@ class EventListener implements Listener {
 	/**
 	 * @return CombatLogger
 	 */
-	public function getPlugin() {
+	public function getPlugin() CombatLogger {
 		return $this->plugin;
 	}
 

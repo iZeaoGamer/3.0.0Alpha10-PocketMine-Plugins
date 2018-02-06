@@ -28,7 +28,7 @@ class SecretVerificationTask extends AsyncTask{
 	 *
 	 * @return void
 	 */
-	public function onRun(){
+	public function onRun(): void{
 		try{
 			$api = new PluginApi($this->secret, $this->dataFolder);
 			$this->setResult($api->basicGet("/information"));

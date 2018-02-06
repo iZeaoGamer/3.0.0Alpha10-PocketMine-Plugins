@@ -17,7 +17,7 @@ class QueuedCommand{
 	 * @param $username string
 	 * @param $needOnline boolean
 	 */
-	public function __construct($command, $username, $needOnline){
+	public function __construct($command, $username, string $needOnline){
 		$this->command = $command;
 		$this->username = $username;
 		$this->queuedTime = time();

@@ -39,20 +39,20 @@ class CombatLogger extends PluginBase {
 	/** Config files */
 	const SETTINGS_FILE = "Settings.yml";
 
-	public function onEnable() {
+	public function onEnable(): void{
 		$this->loadConfigs();
 		$this->setMessageManager();
 		$this->setListener();
 		$this->startHeartbeat();
-		$this->getLogger()->info(TF::AQUA . "CombatLogger v0.0.2" . TF::GREEN . " by " . TF::YELLOW . "JackNoordhuis" . TF::GREEN . ", Loaded successfully!");
+		$this->getLogger()->info(TF::AQUA . "CombatLogger v1.0.0" . TF::GREEN . " by " . TF::YELLOW . "JackNoordhuis" . TF::GREEN . ", Loaded successfully!");
 	}
 
-	public function loadConfigs() {
+	public function loadConfigs(): void {
 		$this->saveResource(self::SETTINGS_FILE);
 		$this->settings = new Config($this->getDataFolder() . self::SETTINGS_FILE, Config::YAML);
 	}
 
-	public function onDisable() {
+	public function onDisable(): void {
 		$this->taggedPlayers = [];
 		$this->getLogger()->info(TF::AQUA . "CombatLogger v0.0.2" . TF::GOLD . " by " . TF::YELLOW . "JackNoordhuis" . TF::GOLD . ", has been disabled!");
 	}
@@ -74,14 +74,14 @@ class CombatLogger extends PluginBase {
 	/**
 	 * @return MessageManager
 	 */
-	public function getMessageManager() {
+	public function getMessageManager(): MessageManager {
 		return $this->messageManager;
 	}
 
 	/**
 	 * @return EventListener
 	 */
-	public function getListener() {
+	public function getListener(): EventListener {
 		return $this->listener;
 	}
 
@@ -98,7 +98,7 @@ class CombatLogger extends PluginBase {
 	 *
 	 * @return mixed
 	 */
-	public function getSettingsProperty(string $nested, $default = []) {
+	public function getSettingsProperty(string $nested, array $default = []) {
 		return $this->settings->getNested($nested, $default);
 	}
 
@@ -107,7 +107,7 @@ class CombatLogger extends PluginBase {
 	 * @param bool $value
 	 * @param int $time
 	 */
-	public function setTagged($player, $value = true, int $time = 10) {
+	public function setTagged(Player $player, bool $value = true, int $time = 10) {
 		if($player instanceof Player) $player = $player->getName();
 		if($value) {
 			$this->taggedPlayers[$player] = $time;
@@ -121,7 +121,7 @@ class CombatLogger extends PluginBase {
 	 *
 	 * @return bool
 	 */
-	public function isTagged($player) {
+	public function isTagged(Player $player): bool {
 		if($player instanceof Player) $player = $player->getName();
 		return isset($this->taggedPlayers[$player]);
 	}
@@ -131,7 +131,7 @@ class CombatLogger extends PluginBase {
 	 *
 	 * @return int
 	 */
-	public function getTagDuration($player) {
+	public function getTagDuration(Player $player): int {
 		if($player instanceof Player) $player = $player->getName();
 		return ($this->isTagged($player) ? $this->taggedPlayers[$player] : 0);
 	}

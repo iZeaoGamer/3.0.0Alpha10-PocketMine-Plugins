@@ -23,7 +23,7 @@ class DeleteCommandsAsyncTask extends AsyncTask{
 	/**
 	 * Actions to execute when run
 	 */
-	public function onRun(){
+	public function onRun(): void{
 		$this->pluginApi->deleteCommands((array) $this->commands);
 	}
 }

@@ -12,7 +12,7 @@ class CommandHelp extends PluginCommand {
 		$this->setDescription("Shows the help menu");
 		$this->setUsage("/help [page]");
 	}
-	public function execute(CommandSender $sender, $label, array $args) {
+	public function execute(CommandSender $sender, string $label, array $args): bool {
 		$sites = $this->getPlugin()->getConfig()->get("CountHelpSites", []);
 		$cpers = $this->getPlugin()->getConfig()->get("CommandsPerSite", []);
 		if(!empty($args[0])) {

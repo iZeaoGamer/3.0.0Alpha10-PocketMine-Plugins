@@ -27,11 +27,11 @@ class PlayerCommandExecutor extends AsyncTask{
 	 *
 	 * @return void
 	 */
-	public function onRun(){
+	public function onRun(): void{
 		$this->setResult($this->pluginApi->basicGet('/queue/online-commands/' . $this->due->id)->commands);
 	}
 
-	public function onCompletion(Server $server){
+	public function onCompletion(Server $server): void{
 		foreach($this->getResult() as $command){
 			BuycraftPlugin::getInstance()->getCommandExecutionTask()->queue($command, $this->due->name, true);
 		}

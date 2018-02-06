@@ -22,13 +22,13 @@ class FinalizeReportTask extends AsyncTask{
 	 *
 	 * @return void
 	 */
-	public function onRun(){
+	public function onRun(): void{
 		$ss = ReportUtil::generateServiceStatus();
 		$result = implode("\n", array_merge((array) $this->lines, $ss));
 		file_put_contents($this->fn, $result);
 	}
 
-	public function onCompletion(Server $server){
+	public function onCompletion(Server $server): void{
 		BuycraftPlugin::getInstance()->getLogger()->info("Report saved to " . $this->fn);
 	}
 }

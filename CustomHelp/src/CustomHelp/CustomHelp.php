@@ -9,7 +9,7 @@ class CustomHelp extends PluginBase {
 	
 	public $prefix = "§7[§2CustomHelp§7]";
 	
-	public function onEnable() {
+	public function onEnable(): void {
 		$this->getLogger()->info($this->prefix . " by §6McpeBooster§7!");
 		$this->saveDefaultConfig();
 		//English is only supportet at the moment

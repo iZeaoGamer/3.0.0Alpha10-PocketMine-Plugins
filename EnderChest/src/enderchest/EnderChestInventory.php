@@ -37,7 +37,7 @@ class EnderChestInventory extends ContainerInventory{
 	 * @return FakeBlockMenu
 	 */
 	
-	public function getHolder(){
+	public function getHolder(): FakeBlockMenu{
 	    return $this->holder;
 	}
 	

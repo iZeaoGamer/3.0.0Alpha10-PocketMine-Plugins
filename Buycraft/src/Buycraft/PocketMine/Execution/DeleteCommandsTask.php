@@ -29,7 +29,7 @@ class DeleteCommandsTask extends PluginTask{
 	 *
 	 * @return void
 	 */
-	public function onRun(int $currentTick){
+	public function onRun(int $currentTick): void{
 		$available = count($this->commandIds);
 		if($available > self::MAXIMUM_COMMANDS_TO_POST){
 			// Only consider the first MAXIMUM_COMMANDS_TO_POST commands.

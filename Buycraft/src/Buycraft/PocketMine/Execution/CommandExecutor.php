@@ -29,7 +29,7 @@ class CommandExecutor extends PluginTask{
 	 *
 	 * @return void
 	 */
-	public function onRun(int $currentTick){
+	public function onRun(int $currentTick): void{
 		$successfully_executed = array();
 
 		// Run all commands, but only at most MAXIMUM_COMMANDS_TO_RUN commands.
