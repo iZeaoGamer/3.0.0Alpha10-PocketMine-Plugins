@@ -23,22 +23,31 @@
 */
 namespace PlayerVaults;
 
-use PlayerVaults\Vault\Vault;
-
 use pocketmine\command\{Command, CommandSender};
 use pocketmine\level\Level;
+use pocketmine\nbt\{BigEndianNBTStream, NetworkLittleEndianNBTStream};
 use pocketmine\plugin\PluginBase;
 use pocketmine\tile\Tile;
 use pocketmine\utils\TextFormat as TF;
 
-class PlayerVaults extends PluginBase{
+class PlayerVaults extends PluginBase {
 
-    private $data = null;
-    private $mysqldata = [];
+    /** @var Provider */
+    private $data;
+
+    /** @var array */
+    private $mysqldata = []
+             
     private static $instance = null;
-    private $parsedConfig = [];
+     
+    /** @var PlayerVaults */
+    private static $instance;
 
-    public function onEnable(){
+    /** @var array */
+    private $parsedConfig = [];
+     
+    public function onEnable() : void
+    {
         self::$instance = $this;
         $this->getLogger()->notice(implode(TF::RESET.PHP_EOL.TF::YELLOW, [
             'Loaded PlayerVaults by Muqsit (Twitter: @muqsitrayyan)',
@@ -80,7 +89,8 @@ class PlayerVaults extends PluginBase{
         Tile::registerTile(Vault::class);
     }
 
-    private function updateConfig(){
+    private function updateConfig() : void
+    {
         $config = $this->getConfig();
         foreach(yaml_parse(stream_get_contents($this->getResource("config.yml"))) as $key => $value){
             if($config->get($key) === false){
@@ -90,31 +100,38 @@ class PlayerVaults extends PluginBase{
         $config->save();
     }
 
-    private function registerConfig(){
+    private function registerConfig() : void
+    {
         $this->parsedConfig = yaml_parse_file($this->getDataFolder()."config.yml");
     }
 
-    public function getFromConfig($key){
+    public function getFromConfig($key)
+    {
         return $this->parsedConfig[$key] ?? null;
     }
 
-    public function getData() : Provider{
+    public function getData() : Provider
+    {
         return $this->data;
     }
 
-    public function getMysqlData() : array{
+    public function getMysqlData() : array
+    {
         return $this->mysqldata;
     }
 
-    public function getMaxVaults() : int{
+    public function getMaxVaults() : int
+    {
         return $this->maxvaults;
     }
 
-    public static function getInstance() : self{
+    public static function getInstance() : PlayerVaults
+    {
         return self::$instance;
     }
 
-    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
+    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool
+    {
         if(isset($args[0]) && $args[0] !== "help" && $args[0] !== ""){
             if(is_numeric($args[0])){
                 if(strpos($args[0], ".") !== false){

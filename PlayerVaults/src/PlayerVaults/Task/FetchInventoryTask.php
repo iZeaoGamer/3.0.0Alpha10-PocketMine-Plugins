@@ -3,12 +3,12 @@
 *
 * Copyright (C) 2017 Muqsit Rayyan
 *
-*    ___ _                                        _ _       
-*   / _ \ | __ _ _   _  ___ _ __/\   /\__ _ _   _| | |_ ___ 
+*    ___ _                                        _ _
+*   / _ \ | __ _ _   _  ___ _ __/\   /\__ _ _   _| | |_ ___
 *  / /_)/ |/ _" | | | |/ _ \ "__\ \ / / _" | | | | | __/ __|
 * / ___/| | (_| | |_| |  __/ |   \ V / (_| | |_| | | |_\__ \
 * \/    |_|\__,_|\__, |\___|_|    \_/ \__,_|\__,_|_|\__|___/
-*                |___/                                      
+*                |___/
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU Lesser General Public License as published by
@@ -22,96 +22,86 @@
 *
 */
 namespace PlayerVaults\Task;
-
 use PlayerVaults\{PlayerVaults, Provider};
-
 use pocketmine\item\Item;
 use pocketmine\nbt\BigEndianNBTStream;
+use pocketmine\nbt\tag\ListTag;
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
-
-class FetchInventoryTask extends AsyncTask{
-
+class FetchInventoryTask extends AsyncTask {
+    /** @var string */
     private $player;
+    /** @var int */
     private $type;
+    /** @var array|string */
     private $data;
+    /** @var int */
     private $number;
+    /** @var string */
     private $viewer;
-
-    public function __construct(string $player, int $type, int $number, string $viewer, $data){
-        $this->player = (string) $player;
-        if($type === Provider::MYSQL){
-            $this->data = (array) $data;
-        }else{
-            $this->data = (string) $data;
-        }
-        $this->type = (int) $type;
-        $this->number = (int) $number;
-        $this->viewer = (string) $viewer;
+    public function __construct(string $player, int $type, int $number, string $viewer, $data)
+    {
+        $this->player = $player;
+        $this->data = serialize($data);
+        $this->type = $type;
+        $this->number = $number;
+        $this->viewer = $viewer;
     }
-
-    public function onRun(){
-        $data = [];
+    public function onRun() : void
+    {
+        $data = null;
         switch($this->type){
             case Provider::YAML:
-                if(!is_file($path = $this->data.$this->player.".yml")){
-                    $data = [];
+                if(!is_file($path = unserialize($this->data).$this->player.".yml")){
+                    $data = null;
                     break;
                 }
-                $data = yaml_parse_file($path)[$this->number] ?? [];
-                if(!empty($data)){
-                    $data = base64_decode($data);
-                }
+                $data = base64_decode(yaml_parse_file($path)[$this->number] ?? "");
                 break;
             case Provider::JSON:
-                if(!is_file($path = $this->data.$this->player.".json")){
-                    $data = [];
+                if(!is_file($path = unserialize($this->data).$this->player.".json")){
+                    $data = null;
                     break;
                 }
-                $data = json_decode(file_get_contents($path), true)[$this->number] ?? [];
-                if(!empty($data)){
-                    $data = base64_decode($data);
-                }
+                $data = base64_decode(json_decode(file_get_contents($path), true)[$this->number] ?? "");
                 break;
             case Provider::MYSQL:
-                $mysql = new \mysqli(...$this->data);
-                $stmt = $mysql->prepare("SELECT inventory FROM vaults WHERE player=? AND number=?");
+                $mysql = new \mysqli(...unserialize($this->data));
+                $stmt = $mysql->prepare("SELECT inventory FROM playervaults WHERE player=? AND number=?");
                 $stmt->bind_param("si", $this->player, $this->number);
                 $stmt->bind_result($data);
                 $stmt->execute();
                 if(!$stmt->fetch()){
-                    $data = [];
-                }else{
-                    if(!empty($data)){
-                        $data = base64_decode($data);
-                    }
+                    $data = null;
                 }
                 $stmt->close();
                 $mysql->close();
                 break;
         }
-        if(empty($data)){
-            $this->setResult([]);
-        }else{
+        if(!empty($data)){
             $nbt = new BigEndianNBTStream();
             $nbt->readCompressed($data);
             $nbt = $nbt->getData();
-            $items = $nbt->ItemList ?? [];
+            $items = $nbt->getListTag("ItemList") ?? new ListTag("ItemList");
             $contents = [];
-            if(!empty($items)){
-                $items = $items->getValue();
-                foreach($items as $slot => $compoundTag){
-                    $contents[$slot] = Item::nbtDeserialize($compoundTag);
+            if(count($items) > 0){
+                foreach($items->getValue() as $slot => $compoundTag){
+                    $contents[$compoundTag["Slot"] ?? $slot] = Item::nbtDeserialize($compoundTag);
                 }
             }
             $this->setResult($contents);
+        }else{
+            $this->setResult([]);
         }
     }
-
-    public function onCompletion(Server $server){
-        $player = $server->getPlayerExact($this->viewer);
+    public function onCompletion(Server $server) : void
+    {
+        $player = $server->getPlayer($this->viewer);
         if($player !== null){
-            $player->addWindow(PlayerVaults::getInstance()->getData()->get($player, $this->getResult(), $this->number, $this->player));
+            $inventory = PlayerVaults::getInstance()->getData()->get($player, $this->getResult(), $this->number, $this->player);
+            if($inventory !== null){
+                $player->addWindow($inventory);
+            }
         }
     }
 }
