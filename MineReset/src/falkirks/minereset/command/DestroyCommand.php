@@ -32,7 +32,7 @@ class DestroyCommand extends SubCommand{
     }
 
 
-    public function execute(CommandSender $sender, $commandLabel, array $args){
+    public function execute(CommandSender $sender, string $commandLabel, array $args): bool{
         if($sender->hasPermission("minereset.command.destroy")) {
             if (isset($args[0])) {
                 if (isset($this->getApi()->getMineManager()[$args[0]])) {

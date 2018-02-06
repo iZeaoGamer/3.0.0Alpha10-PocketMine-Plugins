@@ -11,7 +11,7 @@ use pocketmine\utils\TextFormat;
 class CreateCommand extends SubCommand{
 
 
-    public function execute(CommandSender $sender, $commandLabel, array $args){
+    public function execute(CommandSender $sender, stirng $commandLabel, array $args): bool{
         if($sender->hasPermission("minereset.command.create")) {
             if ($sender instanceof Player) {
                 if (isset($args[0])) {

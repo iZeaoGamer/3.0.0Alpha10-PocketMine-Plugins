@@ -37,7 +37,7 @@ class MineManager implements \ArrayAccess, \IteratorAggregate, \Countable {
             $this->store->reload();
         }
     }
-    protected function saveStore($force = false){
+    protected function saveStore(bool $force = false): bool{
         if(($this->flag > 0 || $force) && $this->store instanceof Saveable){
             $this->store->save();
         }
@@ -75,7 +75,7 @@ class MineManager implements \ArrayAccess, \IteratorAggregate, \Countable {
      * <p>
      * The return value will be casted to boolean if non-boolean was returned.
      */
-    public function offsetExists($offset){
+    public function offsetExists($offset): boolean{
         return isset($this->mines[$offset]);
     }
     /**
@@ -102,7 +102,7 @@ class MineManager implements \ArrayAccess, \IteratorAggregate, \Countable {
      * </p>
      * @return void
      */
-    public function offsetSet($offset, $value){
+    public function offsetSet($offset, $value): void{
         if($value instanceof Mine && $value->getName() === $offset) {
 
             if(isset($this->mines[$offset]) && $value !== $this->mines[$offset] && $this->mines[$offset] instanceof Mine){
@@ -128,7 +128,7 @@ class MineManager implements \ArrayAccess, \IteratorAggregate, \Countable {
      * </p>
      * @return void
      */
-    public function offsetUnset($offset){
+    public function offsetUnset($offset): void{
         if(isset($this->mines[$offset])) {
             if ($this->mines[$offset] instanceof Mine) {
                 $this->mines[$offset]->destroy();
@@ -148,7 +148,7 @@ class MineManager implements \ArrayAccess, \IteratorAggregate, \Countable {
      * @return Mine
      * @throws \Exception
      */
-    protected function mineFromData($name, array $array){
+    protected function mineFromData($name, array $array): Mine{
         if(count($array) === 9 || count($array) === 8) {
             if(!$this->getApi()->getServer()->isLevelLoaded($array[7])){
                 $this->api->getLogger()->warning("A mine with the name " . TextFormat::AQUA . $name . TextFormat::RESET . " is connected to a level which is not loaded. You won't be able to use it until you load the level correctly.");
@@ -171,7 +171,7 @@ class MineManager implements \ArrayAccess, \IteratorAggregate, \Countable {
      * @param Mine $mine
      * @return array
      */
-    protected function mineToData(Mine $mine){
+    protected function mineToData(Mine $mine): array{
         return  [
             $mine->getPointA()->getX(),
             $mine->getPointB()->getX(),

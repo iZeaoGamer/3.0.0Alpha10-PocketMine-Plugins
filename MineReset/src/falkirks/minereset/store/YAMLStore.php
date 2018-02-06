@@ -25,7 +25,7 @@ class YAMLStore extends AbstractStore implements Saveable, Reloadable{
      * @param $warp
      * @return bool|mixed
      */
-    public function add($name, $mine){
+    public function add($name, $mine): bool{
         $past = $this->config->get($name, null);
         $this->config->set($name, $mine);
         $this->config->save();
@@ -37,7 +37,7 @@ class YAMLStore extends AbstractStore implements Saveable, Reloadable{
      * @param $name
      * @return bool|mixed
      */
-    public function get($name){
+    public function get($name): bool{
         return $this->config->get($name, null);
     }
 
@@ -46,7 +46,7 @@ class YAMLStore extends AbstractStore implements Saveable, Reloadable{
      * @param $name
      * @return bool|mixed
      */
-    public function remove($name){
+    public function remove($name): bool{
         $past = $this->config->get($name, null);
         $this->config->remove($name);
         $this->config->save();

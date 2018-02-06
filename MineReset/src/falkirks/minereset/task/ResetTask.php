@@ -39,7 +39,7 @@ class ResetTask extends AsyncTask{
      *
      * @return void
      */
-    public function onRun(){
+    public function onRun(): void{
         $chunkClass = $this->chunkClass;
         /** @var Chunk[] $chunks */
         $chunks = unserialize($this->chunks);
@@ -130,7 +130,7 @@ class ResetTask extends AsyncTask{
     /**
      * @param Server $server
      */
-    public function onCompletion(Server $server){
+    public function onCompletion(Server $server): void{
         $chunks = $this->getResult();
         $plugin = $server->getPluginManager()->getPlugin("MineReset");
         if($plugin instanceof MineReset and $plugin->isEnabled()) {
@@ -151,7 +151,7 @@ class ResetTask extends AsyncTask{
      * @param Server $server
      * @param mixed $progress
      */
-    public function onProgressUpdate(Server $server, $progress){
+    public function onProgressUpdate(Server $server, $progress): void{
         $plugin = $server->getPluginManager()->getPlugin("MineReset");
         if($plugin instanceof MineReset and $plugin->isEnabled()) {
             $plugin->getResetProgressManager()->notifyProgress($progress, $this->name);

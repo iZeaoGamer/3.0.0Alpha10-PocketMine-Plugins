@@ -29,7 +29,7 @@ use jojoe77777\FormAPI;
 class Main extends PluginBase implements Listener {
 	
 	
-    public function onEnable() {
+    public function onEnable(): void{
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->eco = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
 		
@@ -40,13 +40,13 @@ class Main extends PluginBase implements Listener {
         $this->getLogger()->info("§aEnabled");
     }
 	
-    public function onDisable() {
+    public function onDisable(): void{
         $this->getLogger()->info("§cDisabled");
     }
    
      
      
-    public function onCommand(CommandSender $sender, Command $cmd, string $label,array $args) : bool {
+    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool {
 		
 		switch($cmd->getName()){
 		

@@ -42,7 +42,7 @@ class MineReset extends PluginBase{
     /** @var  CreationListener */
     private $creationListener;
 
-    public function onEnable(){
+    public function onEnable(): void{
         self::detectChunkSetting();
 
         @mkdir($this->getDataFolder());
@@ -74,7 +74,7 @@ class MineReset extends PluginBase{
 
     }
 
-    public function onDisable(){
+    public function onDisable(): void{
         $this->mineManager->saveAll();
     }
 

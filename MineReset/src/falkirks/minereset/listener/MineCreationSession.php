@@ -58,7 +58,7 @@ class MineCreationSession{
     /**
      * @return Vector3 | null
      */
-    public function getPointA(){
+    public function getPointA(): Vector3{
         return $this->pointA;
     }
 
@@ -72,7 +72,7 @@ class MineCreationSession{
     /**
      * @return Vector3 | null
      */
-    public function getPointB(){
+    public function getPointB(): Vector3{
         return $this->pointB;
     }
 
@@ -86,7 +86,7 @@ class MineCreationSession{
     /**
      * @return Level | null
      */
-    public function getLevel(){
+    public function getLevel(): Level{
         return $this->level;
     }
 

@@ -108,7 +108,7 @@ class Mine extends PluginTask {
     /**
      * @return Level | null
      */
-    public function getLevel(){
+    public function getLevel(): Level{
         return $this->api->getApi()->getServer()->getLevelByName($this->level);
     }
 
@@ -151,7 +151,7 @@ class Mine extends PluginTask {
     /**
      * @return bool
      */
-    public function isResetting(){
+    public function isResetting(): bool{
         return $this->isResetting;
     }
 
@@ -159,7 +159,7 @@ class Mine extends PluginTask {
      * @param bool $force NOT TESTED
      * @return bool
      */
-    public function reset($force = false){
+    public function reset(bool $force = false): bool{
         if((!$this->isResetting() || $force) && $this->getLevel() !== null){
             $this->isResetting = true;
 

@@ -7,7 +7,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
 
 class ResetCommand extends SubCommand{
-    public function execute(CommandSender $sender, $commandLabel, array $args){
+    public function execute(CommandSender $sender, string $commandLabel, array $args): bool{
         if($sender->hasPermission("minereset.command.reset")) {
             if (isset($args[0])) {
                 if (isset($this->getApi()->getMineManager()[$args[0]])) {
