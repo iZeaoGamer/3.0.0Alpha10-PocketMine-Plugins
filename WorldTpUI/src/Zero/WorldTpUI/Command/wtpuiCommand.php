@@ -21,7 +21,7 @@ class wtpuiCommand extends VanillaCommand {
     $this->setPermission('plugins.command');
   }
 
-  public function execute(CommandSender $sender, $alias, array $args){
+  public function execute(CommandSender $sender, string $alias, array $args): bool{
   if($sender instanceof Player){
   if($sender->isOp() === true){
     $ui = $this->plugin->ui['world-tp'];
@@ -42,7 +42,7 @@ class wtpuiCommand extends VanillaCommand {
    }
   }
 
-  public function getLevels(){
+  public function getLevels(): Level{
     $levels = $this->plugin->getServer()->getLevels();
   foreach($levels as $level){
     $lvl[$level->getName()] = $level;

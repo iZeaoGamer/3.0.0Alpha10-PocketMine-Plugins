@@ -19,7 +19,7 @@ class CustomUI extends UI {
     return $this->id;
   }
   
-  public function send($player){
+  public function send(Player $player){
     $pk = new ModalFormRequestPacket();
     $pk->formId = $this->id;
     $pk->formData = json_encode($this->data);

@@ -17,7 +17,7 @@ class ListenerUI implements Listener {
     $this->plugin = $plugin;
   }
     
-  public function getPlugin(){
+  public function getPlugin(): WorldTpUI {
     return $this->plugin;
   }
     

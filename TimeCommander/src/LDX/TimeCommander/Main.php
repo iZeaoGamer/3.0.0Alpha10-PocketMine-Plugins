@@ -4,7 +4,7 @@ namespace LDX\TimeCommander;
 use pocketmine\plugin\PluginBase;
 
 class Main extends PluginBase {
-	public function onEnable() {
+	public function onEnable(): void{
 		$this->saveDefaultConfig();
 		$c = $this->getConfig()->getAll();
 		foreach ((array)$c["Commands"] as $i) {

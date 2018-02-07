@@ -12,7 +12,7 @@ class Main extends PluginBase {
   public $ui = [];
   public $id = [];
   
-  public $version = '0.0.4';
+  public $version = '0.0.5';
 
   public function onEnable() : void {
   try {
@@ -42,7 +42,7 @@ class Main extends PluginBase {
    }
   }
 
-  public function isFirstLoad(){
+  public function isFirstLoad(): void{
   if(is_file($this->getDataFolder() ."config.yml")){
     return false;
   } else {
@@ -54,7 +54,7 @@ class Main extends PluginBase {
    }
   }
 
-  public function loadAllWorlds(){
+  public function loadAllWorlds(): void{
     $worlds = $this->getServer()->getDataPath() . "worlds/";
     $allWorlds = array_slice(scandir($worlds), 2);
   foreach($allWorlds as $world){
@@ -62,7 +62,7 @@ class Main extends PluginBase {
    }
   }
 
-  public function createWorldUI(){
+  public function createWorldUI(): void{
     $id = $this->getRandId();
     $ui = new \Zero\WorldTpUI\UI\CustomUI($id);
     $this->ui['world-tp'] = $ui;
