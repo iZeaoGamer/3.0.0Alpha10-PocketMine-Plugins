@@ -17,7 +17,7 @@ class TapToDo extends PluginBase implements CommandExecutor, Listener{
     public $blocks;
     /** @var  Config */
     private $blocksConfig;
-    public function onEnable(){
+    public function onEnable(): void{
         $this->sessions = [];
         $this->blocks = [];
         $this->saveResource("blocks.yml");
@@ -217,7 +217,7 @@ class TapToDo extends PluginBase implements CommandExecutor, Listener{
      * @param $name
      * @return Block[]
      */
-    public function getBlocksByName($name){
+    public function getBlocksByName($name): Block{
         $ret = [];
         foreach($this->blocks as $block){
             if($block->getName() === $name) $ret[] = $block;
@@ -232,7 +232,7 @@ class TapToDo extends PluginBase implements CommandExecutor, Listener{
      * @param $level
      * @return Block
      */
-    public function getBlock($x, $y, $z, $level){
+    public function getBlock($x, $y, $z, $level): Block{
         if($x instanceof Position) return (isset($this->blocks[$x->getX() . ":" . $x->getY() . ":" . $x->getZ() . ":" . $x->getLevel()->getName()]) ? $this->blocks[$x->getX() . ":" . $x->getY() . ":" . $x->getZ() . ":" . $x->getLevel()->getName()] : false);
         else return (isset($this->blocks[$x . ":" . $y . ":" . $z . ":" . $level]) ? $this->blocks[$x . ":" . $y . ":" . $z . ":" . $level] : false);
     }
@@ -269,7 +269,7 @@ class TapToDo extends PluginBase implements CommandExecutor, Listener{
      * @param $cmd
      * @return Block
      */
-    public function addBlock(Position $p, $cmd){
+    public function addBlock(Position $p, $cmd): Block{
         $block = new Block(new Position($p->getX(), $p->getY(), $p->getZ(), $p->getLevel()), [$cmd], $this, count($this->blocksConfig->get("blocks")));
         $this->saveBlock($block);
         $this->blocksConfig->save();
@@ -289,7 +289,7 @@ class TapToDo extends PluginBase implements CommandExecutor, Listener{
     /**
      *
      */
-    public function onDisable(){
+    public function onDisable(): void{
         $this->getLogger()->info("Saving blocks...");
         foreach($this->blocks as $block){
             $this->saveBlock($block);

@@ -5,14 +5,10 @@ namespace Texter\text;
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\entity\Entity;
-use pocketmine\level\{
-  Level,
-  Position};
+use pocketmine\level\{Level, Position};
 use pocketmine\math\Vector3;
 use pocketmine\item\Item;
-use pocketmine\utils\{
-  TextFormat as TF,
-  UUID};
+use pocketmine\utils\{TextFormat as TF, UUID};
 
 # Texter
 use Texter\TexterApi;
@@ -38,7 +34,7 @@ class FloatingText extends Text{
    * @param string    $text  = ""
    * @param string    $owner = ""
    */
-  public function __construct(Level $level, $x = 0, $y = 0, $z = 0, string $title = "", string $text = "", string $owner = ""){
+  public function __construct(Level $level, float $x = 0, float $y = 0, float $z = 0, string $title = "", string $text = "", string $owner = ""){
     $this->level = $level;
     $this->x = $x;
     $this->y = $y;
@@ -61,7 +57,7 @@ class FloatingText extends Text{
    * @param  int|float $x
    * @return bool
    */
-  public function setX($x): bool{
+  public function setX(int $x): bool{
     if (is_numeric($x)) {
       $tmpX = $this->x;
       $this->x = $x;
@@ -81,7 +77,7 @@ class FloatingText extends Text{
    * @param  int|float $y
    * @return bool
    */
-  public function setY($y): bool{
+  public function setY(int $y): bool{
     if (is_numeric($y)) {
       $tmpY = $this->y;
       $this->y = $y;
@@ -101,7 +97,7 @@ class FloatingText extends Text{
    * @param  int|float $z
    * @return bool
    */
-  public function setZ($z): bool{
+  public function setZ(int $z): bool{
     if (is_numeric($z)) {
       $tmpZ = $this->z;
       $this->z = $z;

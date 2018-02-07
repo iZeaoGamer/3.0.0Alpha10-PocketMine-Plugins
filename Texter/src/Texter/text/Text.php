@@ -5,13 +5,9 @@ namespace Texter\text;
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\entity\Entity;
-use pocketmine\level\{
-  Level,
-  Position};
+use pocketmine\level\{Level, Position};
 use pocketmine\math\Vector3;
-use pocketmine\network\mcpe\protocol\{
-  AddPlayerPacket,
-  RemoveEntityPacket};
+use pocketmine\network\mcpe\protocol\{AddPlayerPacket, RemoveEntityPacket};
 use pocketmine\item\Item;
 use pocketmine\utils\{
   TextFormat as TF,
@@ -61,7 +57,7 @@ abstract class Text{
    * @param string    $title = ""
    * @param string    $text = ""
    */
-  public function __construct(Level $level, $x = 0, $y = 0, $z = 0, string $title = "", string $text = ""){
+  public function __construct(Level $level, float $x = 0, float $y = 0, float $z = 0, Vector3 $pos, string $title = "", string $text = ""){
     $this->level = $level;
     $this->x = $x;
     $this->y = $y;
@@ -81,7 +77,7 @@ abstract class Text{
    * X座標を取得します
    * @return int|float $this->x
    */
-  public function getX(){
+  public function getX(): float{
     return $this->x;
   }
 
@@ -90,7 +86,7 @@ abstract class Text{
    * @param  int|float $x
    * @return bool
    */
-  public function setX($x): bool{
+  public function setX(float $x): bool{
     if (is_numeric($x)) {
       $tmpX = $this->x;
       $this->x = $x;
@@ -108,7 +104,7 @@ abstract class Text{
    * Y座標を取得します
    * @return int|float $this->y
    */
-  public function getY(){
+  public function getY(): float{
     return $this->y;
   }
 
@@ -117,7 +113,7 @@ abstract class Text{
    * @param  int|float $y
    * @return bool
    */
-  public function setY($y): bool{
+  public function setY(float $y): bool{
     if (is_numeric($y)) {
       $tmpY = $this->y;
       $this->y = $y;
@@ -135,7 +131,7 @@ abstract class Text{
    * Z座標を取得します
    * @return int|float $this->z
    */
-  public function getZ(){
+  public function getZ(): float{
     return $this->z;
   }
 
@@ -144,7 +140,7 @@ abstract class Text{
    * @param  int|float $z
    * @return bool
    */
-  public function setZ($z): bool{
+  public function setZ(float $z): bool{
     if (is_numeric($z)) {
       $tmpZ = $this->z;
       $this->z = $z;
@@ -211,7 +207,7 @@ abstract class Text{
    * 座標をVector3オブジェクトとして取得します
    * @return Vector3 $this->pos
    */
-  public function getAsVector3(){
+  public function getAsVector3(): Vector3{
     return new Vector3($this->x, $this->y, $this->z);
   }
 
@@ -219,7 +215,7 @@ abstract class Text{
    * 座標をPositionオブジェクトとして取得します
    * @return Position
    */
-  public function getAsPosition(){
+  public function getAsPosition(): Position{
     return new Position($this->x, $this->y, $this->z, $this->level);
   }
 

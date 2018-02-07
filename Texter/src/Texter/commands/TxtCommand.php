@@ -3,9 +3,7 @@ namespace Texter\commands;
 
 # Pocketmine
 use pocketmine\Player;
-use pocketmine\command\{
-  Command,
-  CommandSender};
+use pocketmine\command\{Command, CommandSender};
 use pocketmine\math\Vector3;
 use pocketmine\utils\TextFormat as TF;
 
@@ -41,7 +39,7 @@ class TxtCommand extends Command{
     $this->world = $this->main->getWorldLimit();
   }
 
-  public function execute(CommandSender $sender, string $label, array $args){
+  public function execute(CommandSender $sender, string $label, array $args): bool{
     if (!$this->main->isEnabled()) return false;
     if (!$this->testPermission($sender)) return false;
     if ($sender instanceof Player) {
@@ -200,7 +198,7 @@ class TxtCommand extends Command{
    * @param  string      $text
    * @return string|bool
    */
-  private function checkTextLimit(string $text){
+  private function checkTextLimit(string $text): bool{
     if ($this->lim > -1 && mb_strlen($text, "UTF-8") > $this->lim) {
       $message = $this->lang->transrateString("command.txt.limit", ["{limit}"], [$this->lim]);
       return $message;

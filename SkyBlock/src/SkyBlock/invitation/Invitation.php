@@ -43,7 +43,7 @@ class Invitation {
      *
      * @return Player
      */
-    public function getSender() {
+    public function getSender(): Player {
         return $this->sender;
     }
 
@@ -52,7 +52,7 @@ class Invitation {
      *
      * @return Player
      */
-    public function getReceiver() {
+    public function getReceiver(): Player {
         return $this->receiver;
     }
 

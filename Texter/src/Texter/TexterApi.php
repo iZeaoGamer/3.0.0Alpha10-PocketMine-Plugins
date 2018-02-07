@@ -29,20 +29,15 @@ namespace Texter;
 use pocketmine\Player;
 use pocketmine\entity\Entity;
 use pocketmine\item\Item;
-use pocketmine\level\{
-  Level,
-  Position};
+use pocketmine\level\{Level, Position};
 use pocketmine\math\Vector3;
-use pocketmine\utils\{
-  TextFormat as TF,
-  UUID};
+use pocketmine\utils\{TextFormat as TF, UUID};
 
 # Texter
 use Texter\Main;
 use Texter\language\Lang;
 use Texter\text\{
-  CantRemoveFloatingText as CRFT,
-  FloatingText as FT};
+  CantRemoveFloatingText as CRFT, FloatingText as FT};
 use Texter\utils\TunedConfig as Config;
 
 /**
@@ -203,7 +198,7 @@ class TexterApi{
    * @param  int    $entityId
    * @return null|CRFT
    */
-  public function getCrft(string $levelName, int $entityId){
+  public function getCrft(string $levelName, int $entityId): CRFT{
     if (!isset($this->crfts[$levelName][$entityId])) {
       return null;
     }else{
@@ -292,7 +287,7 @@ class TexterApi{
    * @param  int    $entityId
    * @return null|FT
    */
-  public function getFt(string $levelName, int $entityId){
+  public function getFt(string $levelName, int $entityId): FT{
     if (!isset($this->fts[$levelName][$entityId])) {
       return null;
     }else{

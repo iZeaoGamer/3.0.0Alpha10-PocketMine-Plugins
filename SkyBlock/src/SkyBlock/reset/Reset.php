@@ -31,7 +31,7 @@ class Reset {
      *
      * @return int
      */
-    public function getTime() {
+    public function getTime(): int {
         return $this->time;
     }
 

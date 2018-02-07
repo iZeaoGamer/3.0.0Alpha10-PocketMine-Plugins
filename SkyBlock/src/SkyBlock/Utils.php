@@ -13,7 +13,7 @@ class Utils {
      * @param $seconds
      * @return string
      */
-    public static function printSeconds($seconds) {
+    public static function printSeconds($seconds): string {
         $m = floor($seconds / 60);
         $s = floor($seconds % 60);
         return (($m < 10 ? "0" : "") . $m . ":" . ($s < 10 ? "0" : "") . (string) $s);
@@ -25,7 +25,7 @@ class Utils {
      * @param $id
      * @return string
      */
-    public static function getIslandPath($id) {
+    public static function getIslandPath($id): string {
         return SkyBlock::getInstance()->getDataFolder() . "islands" . DIRECTORY_SEPARATOR . $id . ".json";
     }
 
@@ -34,7 +34,7 @@ class Utils {
      *
      * @return string
      */
-    public static function genIslandId() {
+    public static function genIslandId(): string {
         return "a" . floor(microtime(true)) . "-" . rand(1,9999);
     }
 
@@ -44,7 +44,7 @@ class Utils {
      * @param Position $position
      * @return string
      */
-    public static function createPositionString(Position $position) {
+    public static function createPositionString(Position $position): string {
         return "{$position->getLevel()->getName()},{$position->getX()},{$position->getY()},{$position->getZ()}";
     }
 
@@ -54,7 +54,7 @@ class Utils {
      * @param $string
      * @return null|Position
      */
-    public static function parsePosition($string) {
+    public static function parsePosition($string): Position {
         $array = explode(",", $string);
         if(isset($array[3])) {
             $level = SkyBlock::getInstance()->getServer()->getLevelByName($array[0]);

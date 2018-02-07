@@ -27,14 +27,14 @@ class Chat {
      *
      * @return Island
      */
-    public function getIsland() {
+    public function getIsland(): Island {
         return $this->island;
     }
 
     /**
      * @return Player[]
      */
-    public function getMembers() {
+    public function getMembers(): Player {
         return $this->members;
     }
 

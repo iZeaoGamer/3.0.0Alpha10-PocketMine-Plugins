@@ -76,7 +76,7 @@ class TunedConfig{
 	 * @param array  $default  Array with the default values that will be written to the file if it did not exist
 	 * @param null   &$correct Sets correct to true if everything has been loaded correctly
 	 */
-	public function __construct($file, $type = self::DETECT, $default = [], &$correct = null){
+	public function __construct(string $file, int $type = self::DETECT, array $default = [], null &$correct = null){
 		$this->load($file, $type, $default);
 		$correct = $this->correct;
 	}
@@ -107,7 +107,7 @@ class TunedConfig{
 	 *
 	 * @return bool
 	 */
-	public function load($file, $type = self::DETECT, $default = []){
+	public function load($file, int $type = self::DETECT, array $default = []): bool{
 		$this->correct = true;
 		$this->type = (int) $type;
 		$this->file = $file;
@@ -169,7 +169,7 @@ class TunedConfig{
 	/**
 	 * @return boolean
 	 */
-	public function check(){
+	public function check(): boolean{
 		return $this->correct === true;
 	}
 
@@ -178,7 +178,7 @@ class TunedConfig{
 	 *
 	 * @return boolean
 	 */
-	public function save($async = false){
+	public function save(bool $async = false): boolean{
 		if($this->correct === true){
 			try{
 				$content = null;
@@ -225,7 +225,7 @@ class TunedConfig{
 	 *
 	 * @return boolean|mixed
 	 */
-	public function __get($k){
+	public function __get($k): boolean{
 		return $this->get($k);
 	}
 
@@ -242,7 +242,7 @@ class TunedConfig{
 	 *
 	 * @return boolean
 	 */
-	public function __isset($k){
+	public function __isset($k): boolean{
 		return $this->exists($k);
 	}
 
@@ -316,7 +316,7 @@ class TunedConfig{
 	 *
 	 * @return boolean|mixed
 	 */
-	public function get($k, $default = false){
+	public function get($k, $default = false): boolean{
 		return ($this->correct and isset($this->config[$k])) ? $this->config[$k] : $default;
 	}
 
@@ -324,7 +324,7 @@ class TunedConfig{
 	 * @param string $k key to be set
 	 * @param mixed  $v value to set key
 	 */
-	public function set($k, $v = true){
+	public function set(string $k, $v = true){
 		$this->config[$k] = $v;
 		foreach($this->nestedCache as $nestedKey => $nvalue){
 			if(substr($nestedKey, 0, strlen($k) + 1) === ($k . ".")){
@@ -336,7 +336,7 @@ class TunedConfig{
 	/**
 	 * @param array $v
 	 */
-	public function setAll($v){
+	public function setAll(array $v){
 		$this->config = $v;
 	}
 
@@ -346,7 +346,7 @@ class TunedConfig{
 	 *
 	 * @return boolean
 	 */
-	public function exists($k, $lowercase = false){
+	public function exists($k, bool $lowercase = false): boolean{
 		if($lowercase === true){
 			$k = strtolower($k); //Convert requested  key to lower
 			$array = array_change_key_case($this->config, CASE_LOWER); //Change all keys in array to lower
@@ -368,7 +368,7 @@ class TunedConfig{
 	 *
 	 * @return array
 	 */
-	public function getAll($keys = false){
+	public function getAll(bool $keys = false): array{
 		return ($keys === true ? array_keys($this->config) : $this->config);
 	}
 
@@ -385,7 +385,7 @@ class TunedConfig{
 	 *
 	 * @return integer
 	 */
-	private function fillDefaults($default, &$data){
+	private function fillDefaults($default, &$data): integer{
 		$changed = 0;
 		foreach($default as $k => $v){
 			if(is_array($v)){
@@ -418,7 +418,7 @@ class TunedConfig{
 	/**
 	 * @return string
 	 */
-	private function writeProperties(){
+	private function writeProperties(): string{
 		$content = "#Properties Config file\r\n#" . date("D M j H:i:s T Y") . "\r\n";
 		foreach($this->config as $k => $v){
 			if(is_bool($v) === true){

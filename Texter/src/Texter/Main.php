@@ -28,18 +28,11 @@ namespace Texter;
 # Pocketmine
 use pocketmine\Player;
 use pocketmine\Server;
-use pocketmine\command\{
-  Command,
-  CommandSender};
+use pocketmine\command\{Command, CommandSender};
 use pocketmine\entity\Entity;
-use pocketmine\event\{
-  Listener,
-  entity\EntityLevelChangeEvent,
-  player\PlayerJoinEvent};
+use pocketmine\event\{Listener, entity\EntityLevelChangeEvent, player\PlayerJoinEvent};
 use pocketmine\item\Item;
-use pocketmine\level\{
-  Level,
-  Position};
+use pocketmine\level\{Level, Position};
 use pocketmine\math\Vector3;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
@@ -47,16 +40,10 @@ use pocketmine\utils\TextFormat as TF;
 # Texter
 use Texter\EventListener;
 use Texter\TexterApi;
-use Texter\commands\{
-  TxtCommand,
-  TxtAdmCommand};
+use Texter\commands\{TxtCommand, TxtAdmCommand};
 use Texter\language\Lang;
-use Texter\text\{
-  CantRemoveFloatingText as CRFT,
-  FloatingText as FT};
-use Texter\task\{
-  CheckUpdateTask,
-  WorldGetTask};
+use Texter\text\{CantRemoveFloatingText as CRFT, FloatingText as FT};
+use Texter\task\{CheckUpdateTask, WorldGetTask};
 use Texter\utils\TunedConfig as Config;
 
 define("DS", DIRECTORY_SEPARATOR);
@@ -131,7 +118,7 @@ class Main extends PluginBase {
   /****************************************************************************/
   /* PMMP Api */
 
-  public function onLoad(){
+  public function onLoad(): void{
     $this->loadFiles();
     $this->initApi();
     $this->registerCommands();
@@ -139,7 +126,7 @@ class Main extends PluginBase {
     $this->setTimezone();
   }
 
-  public function onEnable(){
+  public function onEnable(): void{
     $this->prepareTexts();
     $listener = new EventListener($this);
     $this->getServer()->getPluginManager()->registerEvents($listener, $this);
@@ -149,7 +136,7 @@ class Main extends PluginBase {
   /****************************************************************************/
   /* Private functions */
 
-  private function loadFiles(){
+  private function loadFiles(): void{
     $this->dir = $this->getDataFolder();
     //
     if(!file_exists($this->dir)){

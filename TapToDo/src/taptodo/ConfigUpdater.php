@@ -14,7 +14,7 @@ class ConfigUpdater{
         $this->tapToDo = $tapToDo;
         $this->version = $this->config->get("version", 0);
     }
-    public function checkConfig(){
+    public function checkConfig(): void{
         if($this->version > ConfigUpdater::CONFIG_VERSION){
             $this->tapToDo->getLogger()->warning("The config loaded is not supported. It may not function correctly. ");
         }

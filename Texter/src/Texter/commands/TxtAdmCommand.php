@@ -36,7 +36,7 @@ class TxtAdmCommand extends Command{
     $this->help .= $this->lang->transrateString("command.txtadm.usage.info");
   }
 
-  public function execute(CommandSender $sender, string $label, array $args){
+  public function execute(CommandSender $sender, string $label, array $args): bool{
     if (!$this->main->isEnabled()) return false;
     if (!$this->testPermission($sender)) return false;
     if (isset($args[0])) {

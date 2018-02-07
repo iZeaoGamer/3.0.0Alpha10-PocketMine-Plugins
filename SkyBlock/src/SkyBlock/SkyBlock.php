@@ -37,13 +37,13 @@ class SkyBlock extends PluginBase {
     /** @var SkyBlockListener */
     private $eventListener;
 
-    public function onLoad() {
+    public function onLoad(): void {
         if(!self::$object instanceof SkyBlock) {
             self::$object = $this;
         }
     }
 
-    public function onEnable() {
+    public function onEnable(): void {
         $this->initialize();
         $this->setSkyBlockGeneratorManager();
         $this->setSkyBlockManager();
@@ -57,7 +57,7 @@ class SkyBlock extends PluginBase {
         $this->getLogger()->info("SkyBlock by @GiantAmethyst was enabled.");
     }
 
-    public function onDisable() {
+    public function onDisable(): void {
         $this->getLogger()->info("SkyBlock by @GiantAmethyst was disabled.");
     }
 
@@ -66,7 +66,7 @@ class SkyBlock extends PluginBase {
      *
      * @return SkyBlock
      */
-    public static function getInstance() {
+    public static function getInstance(): SkyBlock {
         return self::$object;
     }
 
@@ -75,7 +75,7 @@ class SkyBlock extends PluginBase {
      *
      * @return SkyBlockGeneratorManager
      */
-    public function getSkyBlockGeneratorManager() {
+    public function getSkyBlockGeneratorManager(): SkyBlockGeneratorManager {
         return $this->skyBlockGeneratorManager;
     }
 
@@ -84,7 +84,7 @@ class SkyBlock extends PluginBase {
      *
      * @return SkyBlockManager
      */
-    public function getSkyBlockManager() {
+    public function getSkyBlockManager(): SkyBlockManager {
         return $this->skyBlockManager;
     }
 
@@ -93,7 +93,7 @@ class SkyBlock extends PluginBase {
      *
      * @return IslandManager
      */
-    public function getIslandManager() {
+    public function getIslandManager(): IslandManager {
         return $this->islandManager;
     }
 
@@ -102,7 +102,7 @@ class SkyBlock extends PluginBase {
      *
      * @return SkyBlockListener
      */
-    public function getEventListener() {
+    public function getEventListener(): SkyBlockListener {
         return $this->eventListener;
     }
 
@@ -111,7 +111,7 @@ class SkyBlock extends PluginBase {
      *
      * @return InvitationHandler
      */
-    public function getInvitationHandler() {
+    public function getInvitationHandler(): InvitationHandler {
         return $this->invitationHandler;
     }
 
@@ -120,7 +120,7 @@ class SkyBlock extends PluginBase {
      *
      * @return ResetHandler
      */
-    public function getResetHandler() {
+    public function getResetHandler(): ResetHandler {
         return $this->resetHandler;
     }
 
@@ -129,7 +129,7 @@ class SkyBlock extends PluginBase {
      *
      * @return ChatHandler
      */
-    public function getChatHandler() {
+    public function getChatHandler(): ChatHandler {
         return $this->chatHandler;
     }
 

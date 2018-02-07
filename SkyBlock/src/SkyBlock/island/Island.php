@@ -45,7 +45,7 @@ class Island {
      * @param string $home
      * @param string $generator
      */
-    public function __construct(Config $config, $ownerName, $identifier, $members, $locked, $home, $generator) {
+    public function __construct(Config $config, string $ownerName, string $identifier, array $members, bool $locked, string $home, string $generator) {
         $this->config = $config;
         $this->ownerName = $ownerName;
         $this->identifier = $identifier;
@@ -60,7 +60,7 @@ class Island {
      *
      * @return Config
      */
-    public function getConfig() {
+    public function getConfig(): Config {
         return $this->config;
     }
 
@@ -69,7 +69,7 @@ class Island {
      *
      * @return string
      */
-    public function getOwnerName() {
+    public function getOwnerName(): string {
         return $this->ownerName;
     }
 
@@ -78,7 +78,7 @@ class Island {
      *
      * @return string
      */
-    public function getIdentifier() {
+    public function getIdentifier(): string {
         return $this->identifier;
     }
 
@@ -87,7 +87,7 @@ class Island {
      *
      * @return Player[]
      */
-    public function getPlayersOnline() {
+    public function getPlayersOnline(): Player {
         return $this->playersOnline;
     }
 
@@ -96,7 +96,7 @@ class Island {
      *
      * @return string[]
      */
-    public function getMembers() {
+    public function getMembers(): array {
         return $this->members;
     }
 
@@ -105,7 +105,7 @@ class Island {
      *
      * @return boolean
      */
-    public function isLocked() {
+    public function isLocked(): boolean {
         return $this->locked;
     }
 
@@ -114,7 +114,7 @@ class Island {
      *
      * @return string
      */
-    public function getHome() {
+    public function getHome(): string {
         return $this->home;
     }
 
@@ -123,7 +123,7 @@ class Island {
      *
      * @return Position
      */
-    public function getHomePosition() {
+    public function getHomePosition(): Position {
         return Utils::parsePosition($this->home);
     }
 
@@ -132,7 +132,7 @@ class Island {
      *
      * @return bool
      */
-    public function hasHome() {
+    public function hasHome(): bool {
         return $this->getHomePosition() instanceof Position;
     }
 
@@ -141,7 +141,7 @@ class Island {
      *
      * @return array|\string[]
      */
-    public function getAllMembers() {
+    public function getAllMembers(): array {
         $members = $this->members;
         $members[] = $this->ownerName;
         return $members;
@@ -152,7 +152,7 @@ class Island {
      *
      * @return string
      */
-    public function getGenerator() {
+    public function getGenerator(): string {
         return $this->generator;
     }
 
@@ -179,7 +179,7 @@ class Island {
      *
      * @param string $identifier
      */
-    public function setIdentifier($identifier) {
+    public function setIdentifier(string $identifier) {
         $this->identifier = $identifier;
     }
 
@@ -188,7 +188,7 @@ class Island {
      *
      * @param Player[] $playersOnline
      */
-    public function setPlayersOnline($playersOnline) {
+    public function setPlayersOnline(Player $playersOnline) {
         $this->playersOnline = $playersOnline;
     }
 
@@ -197,7 +197,7 @@ class Island {
      *
      * @param string[] $members
      */
-    public function setMembers($members) {
+    public function setMembers(array $members) {
         $this->members = $members;
     }
 
@@ -215,7 +215,7 @@ class Island {
      *
      * @param boolean $locked
      */
-    public function setLocked($locked = true) {
+    public function setLocked(boolean $locked = true) {
         $this->locked = $locked;
     }
 
@@ -224,7 +224,7 @@ class Island {
      *
      * @param string $home
      */
-    public function setHome($home) {
+    public function setHome(string $home) {
         $this->home = $home;
     }
 
@@ -251,7 +251,7 @@ class Island {
      *
      * @param string $generator
      */
-    public function setGenerator($generator) {
+    public function setGenerator(string $generator) {
         $this->generator = $generator;
     }
 
@@ -271,7 +271,7 @@ class Island {
      *
      * @param string $string
      */
-    public function removeMember($string) {
+    public function removeMember(string $string) {
         if(in_array($string, $this->members)) {
             unset($this->members[array_search($string, $this->members)]);
         }

@@ -14,7 +14,7 @@ class ResetHandler {
      *
      * @return Reset[]
      */
-    public function getResetTimers() {
+    public function getResetTimers(): Reset {
         return $this->resets;
     }
 
@@ -24,7 +24,7 @@ class ResetHandler {
      * @param Player $player
      * @return null|Reset
      */
-    public function getResetTimer(Player $player) {
+    public function getResetTimer(Player $player): Reset {
         if(isset($this->resets[strtolower($player->getName())])) {
             return $this->resets[strtolower($player->getName())];
         }

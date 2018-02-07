@@ -3,16 +3,11 @@ namespace Texter;
 
 # Pocketmine
 use pocketmine\Player;
-use pocketmine\event\{
-  Listener,
-  player\PlayerJoinEvent,
-  entity\EntityLevelChangeEvent};
+use pocketmine\event\{Listener, player\PlayerJoinEvent, entity\EntityLevelChangeEvent};
 
 # Texter
 use Texter\task\WorldGetTask;
-use Texter\text\{
-  CantRemoveFloatingText as CRFT,
-  FloatingText as FT};
+use Texter\text\{CantRemoveFloatingText as CRFT, FloatingText as FT};
 
 /**
  * EventListener

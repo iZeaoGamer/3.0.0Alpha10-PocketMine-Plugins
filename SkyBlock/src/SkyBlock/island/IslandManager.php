@@ -29,7 +29,7 @@ class IslandManager {
      * @param $id
      * @return bool
      */
-    public function isOnlineIsland($id) {
+    public function isOnlineIsland($id): bool {
         return isset($this->islands[$id]);
     }
 
@@ -38,7 +38,7 @@ class IslandManager {
      *
      * @return Island[]
      */
-    public function getOnlineIslands() {
+    public function getOnlineIslands(): Island {
         return $this->islands;
     }
 
@@ -48,7 +48,7 @@ class IslandManager {
      * @param $id
      * @return Island
      */
-    public function getOnlineIsland($id) {
+    public function getOnlineIsland($id): Island {
         return isset($this->islands[$id]) ? $this->islands[$id] : null;
     }
 
@@ -58,7 +58,7 @@ class IslandManager {
      * @param $ownerName
      * @return null|Island
      */
-    public function getIslandByOwner($ownerName) {
+    public function getIslandByOwner($ownerName): Island {
         foreach($this->islands as $island) {
             if($island->getOwnerName() == $ownerName) {
                 return $island;
@@ -78,7 +78,7 @@ class IslandManager {
      * @param $home
      * @param $generator
      */
-    public function addIsland(Config $config, $ownerName, $id, $members, $locked, $home, $generator) {
+    public function addIsland(Config $config, string $ownerName, string $id, string $members, string $locked, string $home, string $generator) {
         $this->islands[$id] = new Island($config, $ownerName, $id, $members, $locked, $home, $generator);
     }
 
@@ -88,7 +88,7 @@ class IslandManager {
      * @param Player $owner
      * @param string $generator
      */
-    public function createIsland(Player $owner, $generator) {
+    public function createIsland(Player $owner, string $generator) {
         $id = Utils::genIslandId();
         $name = strtolower($owner->getName());
         $config = new Config(Utils::getIslandPath($id), Config::JSON, [

@@ -73,7 +73,7 @@ class Command {
     /**
      * @return null
      */
-    public function getCompiledCommand(){
+    public function getCompiledCommand(): null{
         return $this->compiledCommand;
     }
 

@@ -31,7 +31,7 @@ class SkyBlockManager {
         $this->plugin = $plugin;
     }
 
-    public function generateIsland(Player $player, $generatorName = "basic") {
+    public function generateIsland(Player $player, string $generatorName = "basic") {
         $this->plugin->getIslandManager()->createIsland($player, $generatorName);
         $server = $this->plugin->getServer();
         $island = $this->getPlayerConfig($player)->get("island");
@@ -79,7 +79,7 @@ class SkyBlockManager {
      * @param Player $player
      * @return string
      */
-    public function getPlayerDataPath(Player $player) {
+    public function getPlayerDataPath(Player $player): string {
         return $this->plugin->getDataFolder() . "users" . DIRECTORY_SEPARATOR . strtolower($player->getName()) . ".json";
     }
 
@@ -111,7 +111,7 @@ class SkyBlockManager {
      * @param Player $player
      * @return Config
      */
-    public function getPlayerConfig(Player $player) {
+    public function getPlayerConfig(Player $player): Config {
         return new Config($this->getPlayerDataPath($player), Config::JSON);
     }
 

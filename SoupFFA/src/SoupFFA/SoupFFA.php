@@ -350,7 +350,7 @@ class SoupFFA extends PluginBase implements Listener{
 		}
 	}
 	
-	public function onCommand(CommandSender $sender, Command $command, $label, array $args) : bool {
+	public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool {
 		if($command->getName() == "soupffa"){
 			if($sender instanceof Player){
 				$player = $sender;

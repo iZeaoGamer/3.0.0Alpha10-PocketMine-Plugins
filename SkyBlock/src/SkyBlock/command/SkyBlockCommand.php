@@ -29,11 +29,11 @@ class SkyBlockCommand extends Command {
         parent::__construct("skyblock", "Main SkyBlock command", "Usage: /skyblock", ["sb"]);
     }
 
-    public function sendMessage(Player $sender, $message) {
+    public function sendMessage(Player $sender, string $message) {
         $sender->sendMessage(TextFormat::GREEN . "- " . TextFormat::WHITE . $message);
     }
 
-    public function execute(CommandSender $sender, string $commandLabel, array $args) {
+    public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
         if($sender instanceof Player) {
             if(isset($args[0])) {
                 switch($args[0]) {

@@ -20,7 +20,7 @@ class Vanish extends PluginBase implements Listener {
 
     public $vanish = array();
 
-    public function onEnable(){
+    public function onEnable(): void{
         $this->getLogger()->info("Activated!");
         $this->saveResource("config.yml");
         @mkdir($this->getDataFolder());

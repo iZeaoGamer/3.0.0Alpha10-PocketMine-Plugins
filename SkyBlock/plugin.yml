@@ -1,5 +1,5 @@
 name: SkyBlock
 author: ZaPPERDev
 main: SkyBlock\SkyBlock
-version: "0.3.0"
-api: [3.0.0-ALPHA10, 3.0.0-ALPHA9]
+version: "0.3.1"
+api: [3.0.0-ALPHA10, 3.0.0-ALPHA11]

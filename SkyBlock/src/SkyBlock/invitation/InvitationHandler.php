@@ -28,7 +28,7 @@ class InvitationHandler {
      *
      * @return SkyBlock
      */
-    public function getPlugin() {
+    public function getPlugin(): SkyBlock {
         return $this->plugin;
     }
 
@@ -37,7 +37,7 @@ class InvitationHandler {
      *
      * @return Invitation[]
      */
-    public function getInvitations() {
+    public function getInvitations(): Invitation {
         return $this->invitations;
     }
 
@@ -47,7 +47,7 @@ class InvitationHandler {
      * @param Player $player
      * @return null|Invitation
      */
-    public function getInvitation(Player $player) {
+    public function getInvitation(Player $player): Invitation {
         if(isset($this->invitations[strtolower($player->getName())])) {
             return $this->invitations[strtolower($player->getName())];
         }
