@@ -9,7 +9,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
 
 class Main extends PluginBase implements Listener {
-	public function onEnable() {
+	public function onEnable(): void{
 		$this->saveDefaultConfig();
 		$this->getLogger()->notice(TF::GREEN."Enabed!");
 	}
@@ -19,7 +19,7 @@ class Main extends PluginBase implements Listener {
 	 *
 	 * @return Item
 	 */
-	private function parseItem(string $itemString) {
+	private function parseItem(string $itemString): Item {
 		$arr = explode(':',$itemString);
 		if(isset($arr[3])) {
 			$tag = hex2bin($arr[3]);

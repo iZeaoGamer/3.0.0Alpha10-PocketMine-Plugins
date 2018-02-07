@@ -12,10 +12,10 @@ use pocketmine\event\entity\EntityDamageEvent;
 
 class Main extends PluginBase implements Listener {
     public $enabled = true;
-    public function onEnable() {
+    public function onEnable(): void {
         $this->getServer()->getPluginManager()->registerEvents($this,$this);
     }
-    public function onCommand(CommandSender $issuer,Command $cmd,string $label,array $args) : bool {
+    public function onCommand(CommandSender $issuer, Command $cmd, string $label,array $args) : bool {
         if(strtolower($cmd->getName()) == "ps" ) {
             if($issuer->hasPermission("peacefulspawn") || $issuer->hasPermission("peacefulspawn.toggle")) {
                 $this->enabled = !$this->enabled;

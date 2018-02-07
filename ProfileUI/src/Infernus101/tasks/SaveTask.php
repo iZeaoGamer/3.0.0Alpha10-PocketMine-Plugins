@@ -14,7 +14,7 @@ class SaveTask extends PluginTask{
 		$this->pl = $pl;
 	}
 
-	public function onRun($currentTick){
+	public function onRun(int $currentTick){
 		$this->pl->saveStat();
 	}
 }

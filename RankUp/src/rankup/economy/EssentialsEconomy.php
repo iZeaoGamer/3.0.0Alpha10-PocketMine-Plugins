@@ -26,7 +26,7 @@ class EssentialsEconomy extends BaseEconomy{
     /**
      * @return BaseEconomyProvider
      */
-    public function getAPI(){
+    public function getAPI(): BaseEconomyProvider{
         return $this->getPlugin()->getServer()->getPluginManager()->getPlugin("EssentialsPEconomy")->getProvider();
     }
     public function isReady(){

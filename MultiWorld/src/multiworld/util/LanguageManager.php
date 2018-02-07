@@ -35,7 +35,7 @@ class LanguageManager {
     /**
      * @return string $lang
      */
-    public static function getLang() {
+    public static function getLang(): string {
         return strval(self::$lang);
     }
 
@@ -43,7 +43,7 @@ class LanguageManager {
      * @param $message
      * @return string
      */
-    public static function translateMessage($message) {
+    public static function translateMessage($message): string {
         return strval(self::$messages->get($message));
     }
 }

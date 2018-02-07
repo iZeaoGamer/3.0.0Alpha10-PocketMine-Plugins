@@ -18,13 +18,13 @@ class RestartServerTask extends PluginTask{
     /** 
      * @return RestartMe 
      */
-    public function getPlugin(){
+    public function getPlugin(): RestartMe{
         return $this->plugin;
     }
     /**
      * @param int $currentTick
      */
-    public function onRun($currentTick){
+    public function onRun(int $currentTick){
         if(!$this->getPlugin()->isTimerPaused()){
             $this->getPlugin()->subtractTime(1);
             if($this->getPlugin()->getTime() <= $this->getPlugin()->getConfig()->get("startCountdown")){

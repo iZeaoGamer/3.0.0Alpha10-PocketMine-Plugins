@@ -9,7 +9,7 @@ abstract class BasePermissionManager{
     public function __construct(RankUp $main){
         $this->plugin = $main;
     }
-    public function getPlugin(){
+    public function getPlugin(): Plugin{
         return $this->plugin;
     }
     public abstract function addToGroup(Player $player, $group);

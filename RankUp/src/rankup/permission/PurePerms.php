@@ -34,19 +34,19 @@ class PurePerms extends BasePermissionManager{
     /**
      * @return Plugin
      */
-    public function getAPI(){
+    public function getAPI(): Plugin{
         return $this->getPlugin()->getServer()->getPluginManager()->getPlugin("PurePerms");
     }
 	/**
 	 * @return bool
 	 */
-    public function isReady(){
+    public function isReady(): bool{
         return ($this->getAPI() instanceof PluginBase);
     }
 	/**
 	 * @return string
 	 */
-    public function getName(){
+    public function getName(): string{
         return "PurePerms_v1.2 by 64FF00";
     }
 }

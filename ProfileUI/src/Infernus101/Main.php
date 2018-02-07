@@ -20,7 +20,7 @@ class Main extends PluginBase implements Listener {
 	
 	public $flag = false;
 	
-	public function onEnable(){
+	public function onEnable(): void{
 		$this->getServer()->getLogger()->notice("[ProfielUI] Enabled! - By Infernus101");
 		$file = "config.yml";
 		if(!file_exists($this->getDataFolder() . $file)){
@@ -43,12 +43,12 @@ class Main extends PluginBase implements Listener {
 		}
 	}
 	
-	public function onDisable(){
+	public function onDisable(): void{
 		$this->saveStat();
 		$this->getServer()->getLogger()->notice("[ProfielUI] Disabled! - By Infernus101");
 	}
 	
-	public function saveStat(){
+	public function saveStat(): void{
 		if($this->flag == true){
 		@unlink($this->getDataFolder() . "/records.json");
 		$d = new Config($this->getDataFolder() . "/records.json", Config::JSON);
@@ -60,7 +60,7 @@ class Main extends PluginBase implements Listener {
 		}
 	}
 
-	public function getStat($player){
+	public function getStat(Player $player){
 		return isset($this->players[strtolower($player->getName())]) ? $this->players[strtolower($player->getName())] : $this->base;
 	}
 	
@@ -70,7 +70,7 @@ class Main extends PluginBase implements Listener {
 		$this->players[strtolower($player->getName())] = $stat;
 	}
 	
-	public function onCommand(CommandSender $sender, Command $cmd, String $label, array $args): bool{
+	public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool{
 	  if(!$sender instanceof Player){
 		  $sender->sendMessage(TextFormat::RED."> Command must be run ingame!");
 		  return true;

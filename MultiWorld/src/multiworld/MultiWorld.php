@@ -46,7 +46,7 @@ class MultiWorld extends PluginBase {
      */
     public $managers = [], $editors = [];
 
-    public function onEnable() {
+    public function onEnable(): void {
         self::$instance = $this;
         $this->registerGenerators();
         $this->registerManagers();
@@ -74,7 +74,7 @@ class MultiWorld extends PluginBase {
 
     }
 
-    public function onDisable() {
+    public function onDisable(): void {
         $this->getConfigManager()->getDataManager()->saveAllData();
         $this->getLogger()->info("§aMultiWorld is disabled!");
     }

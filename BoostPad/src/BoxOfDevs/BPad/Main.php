@@ -18,7 +18,7 @@ use pocketmine\block\Block;
 
 class Main extends PluginBase implements Listener {
 	
-	public function onEnable(){
+	public function onEnable(): void{
 		$this->getServer()->getPluginManager()->registerEvents($this ,$this);
 		$this->saveDefaultConfig();
 		$this->config = $this->getConfig();
@@ -47,7 +47,7 @@ class Main extends PluginBase implements Listener {
 		}
 	}
 	
-	public function onDisable(){
+	public function onDisable(): void{
 		$this->getLogger()->info(C::DARK_RED."Disabled!");
 	}
 }

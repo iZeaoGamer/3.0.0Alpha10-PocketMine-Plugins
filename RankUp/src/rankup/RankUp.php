@@ -28,7 +28,7 @@ class RankUp extends PluginBase{
     private $rankStore;
     /** @var  RankUpCommand */
     private $rankupCommand;
-    public function onEnable(){
+    public function onEnable(): void{
         $this->saveDefaultConfig();
         $this->languageConfig = new LanguageConfig($this->getConfig());
         $this->loadRankUpDoesGroups();
@@ -49,7 +49,7 @@ class RankUp extends PluginBase{
     /**
      * @return \rankup\LanguageConfig
      */
-    public function getLanguageConfig(){
+    public function getLanguageConfig(): LanguageConfig{
         return $this->languageConfig;
     }
 
@@ -63,21 +63,21 @@ class RankUp extends PluginBase{
     /**
      * @return \rankup\economy\BaseEconomy
      */
-    public function getEconomy(){
+    public function getEconomy(): BaseEconomy{
         return $this->economy;
     }
 
     /**
      * @return bool
      */
-    public function isLinkedToEconomy(){
+    public function isLinkedToEconomy(): bool{
         return $this->economy instanceof BaseEconomy;
     }
 
     /**
      * @return \rankup\economy\EconomyLoader
      */
-    public function getEconomyLoader(){
+    public function getEconomyLoader(): EconomyLoader{
         return $this->economyLoader;
     }
 
@@ -89,7 +89,7 @@ class RankUp extends PluginBase{
     /**
      * @return \rankup\rank\RankStore
      */
-    public function getRankStore(){
+    public function getRankStore(): RankStore{
         return $this->rankStore;
     }
 
@@ -103,14 +103,14 @@ class RankUp extends PluginBase{
     /**
      * @return \rankup\permission\BasePermissionManager
      */
-    public function getPermManager(){
+    public function getPermManager(): BasePermissionManager{
         return $this->permManager;
     }
 
     /**
      * @return \rankup\permission\PermissionLoader
      */
-    public function getPermissionLoader(){
+    public function getPermissionLoader(): PermissionLoader{
         return $this->permissionLoader;
     }
 
@@ -130,7 +130,7 @@ class RankUp extends PluginBase{
     /**
      * @return \rankup\doesgroups\RankUpDoesGroups
      */
-    public function getRankUpDoesGroups(){
+    public function getRankUpDoesGroups(): RankUpDoesGroups{
         return $this->rankUpDoesGroups;
     }
 

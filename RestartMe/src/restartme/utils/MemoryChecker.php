@@ -7,7 +7,7 @@ class MemoryChecker{
      * @param string $toCheck
      * @return int
      */
-    public static function calculateBytes($toCheck){
+    public static function calculateBytes(string $toCheck): int{
         $byteLimit = (int) substr(trim($toCheck), 0, 1);
         switch(strtoupper(substr($toCheck, -1))){
             /** @noinspection PhpMissingBreakStatementInspection */
@@ -32,7 +32,7 @@ class MemoryChecker{
      * @param string $toCheck
      * @return bool
      */
-    public static function isOverloaded($toCheck){
+    public static function isOverloaded(string $toCheck): bool{
         return memory_get_usage(true) > self::calculateBytes($toCheck);
     }
 }

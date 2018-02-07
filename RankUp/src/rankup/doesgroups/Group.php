@@ -77,21 +77,21 @@ class Group{
     /**
      * @return \rankup\doesgroups\RankUpDoesGroups
      */
-    public function getMain(){
+    public function getMain(): RankUpDoesGroups{
         return $this->main;
     }
 
     /**
      * @return \pocketmine\permission\Permission
      */
-    public function getPerm(){
+    public function getPerm(): Permission{
         return $this->perm;
     }
 
     /**
      * @return \pocketmine\permission\Permission[]
      */
-    public function getPermsToSet(){
+    public function getPermsToSet(): Permission{
         return $this->permsToSet;
     }
 

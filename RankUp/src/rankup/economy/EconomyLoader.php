@@ -8,7 +8,7 @@ class EconomyLoader{
     public function __construct(RankUp $plugin){
         $this->plugin = $plugin;
     }
-    public function load(){
+    public function load(): void{
         if($this->plugin->getConfig()->get('preferred-economy') !== false){
             $name = $this->plugin->getConfig()->get('preferred-economy');
             try{

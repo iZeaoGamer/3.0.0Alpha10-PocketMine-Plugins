@@ -79,21 +79,21 @@ class RankUpDoesGroups{
     /**
      * @return \pocketmine\utils\Config
      */
-    public function getConfig(){
+    public function getConfig(): Config{
         return $this->config;
     }
 
     /**
      * @return \pocketmine\permission\Permission
      */
-    public function getGroupPermission(){
+    public function getGroupPermission(): Permission{
         return $this->groupPermission;
     }
 
     /**
      * @return \pocketmine\Server
      */
-    public function getServer(){
+    public function getServer(): Server{
         return $this->server;
     }
 }

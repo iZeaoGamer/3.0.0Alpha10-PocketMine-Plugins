@@ -24,7 +24,7 @@ class PocketMoney extends BaseEconomy{
     /**
      * @return \PocketMoney\PocketMoney
      */
-    public function getAPI(){
+    public function getAPI(): PocketMoney{
         return $this->getPlugin()->getServer()->getPluginManager()->getPlugin("PocketMoney");
     }
     public function isReady(){

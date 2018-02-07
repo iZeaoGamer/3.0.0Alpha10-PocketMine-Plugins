@@ -25,7 +25,7 @@ class ReportGUI extends PluginBase implements Listener
 
     private $selection = [], $admin_selection = [];
 
-    public function onLoad()
+    public function onLoad(): void
     {
         $folder = $this->getDataFolder();
         $this->saveDefaultConfig();
@@ -35,7 +35,7 @@ class ReportGUI extends PluginBase implements Listener
         $this->reports = new Config($folder . 'reports.yml', Config::YAML);
     }
 
-    public function onEnable()
+    public function onEnable(): void
     {
         $this->FormAPI = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         if(!$this->FormAPI or $this->FormAPI->isDisabled())
@@ -48,7 +48,7 @@ class ReportGUI extends PluginBase implements Listener
         $this->getServer()->getLogger()->info(TextFormat::AQUA . 'ReportGUI enabled. ' . TextFormat::GRAY . 'Made by Taylcd with ' . TextFormat::RED . "\xe2\x9d\xa4");
     }
 
-    public function onDisable()
+    public function onDisable(): void
     {
         $this->save();
     }

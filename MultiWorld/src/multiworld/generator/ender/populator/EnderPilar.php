@@ -41,7 +41,7 @@ class EnderPilar extends Populator {
      * @param Random $random
      * @return void
      */
-    public function populate(ChunkManager $level, int $chunkX, int $chunkZ, Random $random) {
+    public function populate(ChunkManager $level, int $chunkX, int $chunkZ, Random $random): void {
         if (mt_rand(0, 100) < 10) {
             $this->level = $level;
             $amount = $random->nextRange(0, $this->randomAmount + 1) + $this->baseAmount;
@@ -69,7 +69,7 @@ class EnderPilar extends Populator {
      * @param $z
      * @return int
      */
-    private function getHighestWorkableBlock($x, $z) {
+    private function getHighestWorkableBlock($x, $z): int {
         for ($y = 127; $y >= 0; --$y) {
             $b = $this->level->getBlockIdAt($x, $y, $z);
             if ($b == Block::END_STONE) {

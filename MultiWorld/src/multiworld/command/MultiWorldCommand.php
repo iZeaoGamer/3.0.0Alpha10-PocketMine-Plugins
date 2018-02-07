@@ -33,7 +33,7 @@ class MultiWorldCommand extends Command implements PluginIdentifiableCommand {
      * @param null $usageMessage
      * @param array $aliases
      */
-    public function __construct($name = "multiworld", $description = "MultiWorld Commands", $usageMessage = null, $aliases = ["mw", "wm"]) {
+    public function __construct(string $name = "multiworld", string $description = "MultiWorld Commands", null $usageMessage = null, array $aliases = ["mw", "wm"]) {
         $this->plugin = MultiWorld::getInstance();
         parent::__construct($name, $description, $usageMessage, $aliases);
     }
@@ -44,7 +44,7 @@ class MultiWorldCommand extends Command implements PluginIdentifiableCommand {
      * @param array $args
      * @return bool
      */
-    public function execute(CommandSender $sender, string $commandLabel, array $args) {
+    public function execute(CommandSender $sender, string $commandLabel, array $args) : bool{
         if (empty($args[0])) {
             $sender->sendMessage(MultiWorld::getPrefix() . LanguageManager::translateMessage("default-usage"));
             return false;

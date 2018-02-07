@@ -16,7 +16,7 @@ class Main extends PluginBase implements Listener {
 	 *
 	 * @return mixed|string
 	 */
-	public function translateColors(string $symbol, string $message){
+	public function translateColors(string $symbol, string $message): string{
 		
 		$message = str_replace($symbol."0", TextFormat::BLACK, $message);
 		$message = str_replace($symbol."1", TextFormat::DARK_BLUE, $message);
@@ -45,7 +45,7 @@ class Main extends PluginBase implements Listener {
 		return $message;
 	}
 	
-	public function onEnable(){
+	public function onEnable(): void{
 		$this->saveDefaultConfig();
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 	}
@@ -55,7 +55,7 @@ class Main extends PluginBase implements Listener {
 	 *
 	 * @return bool
 	 */
-	public function isChatDisabled(string $level){
+	public function isChatDisabled(string $level): bool{
 		return array_search($level, $this->getConfig()->getAll()["disabled-in-worlds"]) !== false;
 	}
 

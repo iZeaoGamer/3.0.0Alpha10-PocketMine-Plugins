@@ -37,7 +37,7 @@ class ConfigManager {
     /**
      * @return void
      */
-    public function initConfig() {
+    public function initConfig(): void {
         if(!is_dir(self::getDataFolder())) {
             @mkdir(self::getDataFolder());
         }
@@ -73,14 +73,14 @@ class ConfigManager {
     /**
      * @return string
      */
-    public static function getDataFolder() {
+    public static function getDataFolder(): string {
         return MultiWorld::getInstance()->getDataFolder();
     }
 
     /**
      * @return string
      */
-    public static function getDataPath() {
+    public static function getDataPath(): string {
         return MultiWorld::getInstance()->getServer()->getDataPath();
     }
 

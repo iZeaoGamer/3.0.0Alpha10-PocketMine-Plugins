@@ -13,7 +13,7 @@ class RankStore{
         $this->main = $main;
     }
 
-    public function loadFromConfig(){
+    public function loadFromConfig(): void{
         $this->ranks = [];
         foreach($this->getMain()->getConfig()->get('ranks') as $name => $price){
             $this->ranks[] = new Rank($name, count($this->ranks), $price);
@@ -31,7 +31,7 @@ class RankStore{
     /**
      * @return \rankup\RankUp
      */
-    public function getMain(){
+    public function getMain(): RankUp{
         return $this->main;
     }
     public function getNextRank(Player $player){

@@ -15,7 +15,7 @@ class RestartMe extends PluginBase{
     private $timer = 0;
     /** @var bool */
     private $paused = false;
-    public function onEnable(){
+    public function onEnable(): void{
         $this->saveDefaultConfig();
         $this->saveResource("values.txt");
         $this->getServer()->getCommandMap()->register("restartme", new RestartMeCommand($this));
@@ -33,20 +33,20 @@ class RestartMe extends PluginBase{
     /** 
      * @return int 
      */
-    public function getTime(){
+    public function getTime(): int{
     	return $this->timer;
     }
     /**
      * @return string
      */
-    public function getFormattedTime(){
+    public function getFormattedTime(): string{
         $time = $this->toArray();
         return $time[0]." hr ".$time[1]." min ".$time[2]." sec";
     }
     /**
      * @return array
      */
-    public function toArray(){
+    public function toArray(): array{
         return [
             floor($this->getTime() / 3600), //hour
             floor(($this->getTime() / 60) - (floor($this->getTime() / 3600) * 60)), //minute
@@ -56,26 +56,26 @@ class RestartMe extends PluginBase{
     /** 
      * @param int $seconds 
      */
-    public function setTime($seconds){
+    public function setTime(int $seconds){
     	$this->timer = (int) $seconds;
     }
     /** 
      * @param int $seconds 
      */
-    public function addTime($seconds){
+    public function addTime(int $seconds){
     	if(is_numeric($seconds)) $this->timer += (int) $seconds;
     }
     /** 
      * @param int $seconds 
      */
-    public function subtractTime($seconds){
+    public function subtractTime(int $seconds){
     	if(is_numeric($seconds)) $this->timer -= (int) $seconds;
     }
     /** 
      * @param string $message
      * @param string $messageType
      */
-    public function broadcastTime($message, $messageType){
+    public function broadcastTime(string $message, string $messageType){
         $outMessage = str_replace(
             [
                 "{RESTART_FORMAT_TIME}",
@@ -112,7 +112,7 @@ class RestartMe extends PluginBase{
     /** 
      * @param int $mode 
      */
-    public function initiateRestart($mode){
+    public function initiateRestart(int $mode){
         switch($mode){
             case self::NORMAL:
                 foreach($this->getServer()->getOnlinePlayers() as $player){
@@ -132,19 +132,19 @@ class RestartMe extends PluginBase{
     /**
      * @return bool
      */
-    public function isTimerPaused(){
+    public function isTimerPaused(): bool{
         return $this->paused === true;
     }
     /**
      * @param bool $value
      */
-    public function setPaused($value = true){
+    public function setPaused(bool $value = true){
         $this->paused = (bool) $value;
     }
     /**
      * @return string
      */
-    public function getMemoryLimit(){
+    public function getMemoryLimit(): string{
         return strtoupper($this->getConfig()->get("memoryLimit"));
     }
 }

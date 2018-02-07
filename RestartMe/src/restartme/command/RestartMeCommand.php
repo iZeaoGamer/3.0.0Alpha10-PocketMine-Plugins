@@ -25,7 +25,7 @@ class RestartMeCommand extends Command{
     /** 
      * @return RestartMe 
      */
-    public function getPlugin(){
+    public function getPlugin(): RestartMe{
         return $this->plugin;
     }
     /** 
@@ -53,7 +53,7 @@ class RestartMeCommand extends Command{
      * @param string[] $args
      * @return bool
      */
-    public function execute(CommandSender $sender, $label, array $args){
+    public function execute(CommandSender $sender, string $label, array $args): bool{
         if(!$this->testPermission($sender)) return false;
         if(isset($args[0])){
             switch(strtolower($args[0])){

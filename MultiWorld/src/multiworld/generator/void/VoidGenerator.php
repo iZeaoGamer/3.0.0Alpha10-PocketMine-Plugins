@@ -61,7 +61,7 @@ class VoidGenerator extends Generator {
      *
      * @return mixed|void
      */
-    public function init(ChunkManager $level, Random $random){
+    public function init(ChunkManager $level, Random $random): void{
         $this->level = $level;
         $this->random = $random;
     }
@@ -72,7 +72,7 @@ class VoidGenerator extends Generator {
      *
      * @return mixed|void
      */
-    public function generateChunk(int $chunkX, int $chunkZ){
+    public function generateChunk(int $chunkX, int $chunkZ): void{
         if($this->emptyChunk === null){
             $this->chunk = clone $this->level->getChunk($chunkX, $chunkZ);
             $this->chunk->setGenerated();
@@ -105,7 +105,7 @@ class VoidGenerator extends Generator {
      *
      * @return mixed|void
      */
-    public function populateChunk(int $chunkX, int $chunkZ){
+    public function populateChunk(int $chunkX, int $chunkZ): void{
     }
 
     /**

@@ -33,7 +33,7 @@ class Economy extends BaseEconomy{
     /**
      * @return Plugin
      */
-    public function getAPI(){
+    public function getAPI(): Plugin{
         return $this->getPlugin()->getServer()->getPluginManager()->getPlugin("EconomyAPI");
     }
     public function isReady(){

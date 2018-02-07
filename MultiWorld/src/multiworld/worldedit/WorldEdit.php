@@ -45,7 +45,7 @@ class WorldEdit {
      * @param string $blocks
      * @return int
      */
-    public function fill(Vector3 $pos1, Vector3 $pos2, Level $level, string $blocks) {
+    public function fill(Vector3 $pos1, Vector3 $pos2, Level $level, string $blocks): int {
         $count = 0;
         $minPos = new Vector3(min($pos1->getX(), $pos2->getX()), min($pos1->getY(), $pos2->getY()), min($pos1->getZ(), $pos2->getZ()));
         $maxPos = new Vector3(max($pos1->getX(), $pos2->getX()), max($pos1->getY(), $pos2->getY()), max($pos1->getZ(), $pos2->getZ()));
