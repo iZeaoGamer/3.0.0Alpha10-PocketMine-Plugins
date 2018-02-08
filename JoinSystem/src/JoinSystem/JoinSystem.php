@@ -20,7 +20,7 @@ class JoinSystem extends PluginBase implements Listener{
 	
 	public static $instance;
 	
-	public function onEnable(){
+	public function onEnable(): void{
 		$this->getLogger()->info(self::PREFIX . " by §6McpeBooster§7!");
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->saveDefaultConfig();
