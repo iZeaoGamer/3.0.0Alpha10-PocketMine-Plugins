@@ -30,16 +30,16 @@ FormAuth 3.0.0-ALPHA10 - ALPHA11
 FormShop 3.0.0-ALPHA10 - ALPHA11
 >>A simple Shop plugin but in forms.
 
-GrabBagCommands 3.0.0-ALPHA9
+GrabBagCommands 3.0.0-ALPHA10 - ALPHA11
 >>Summary: Collection of miscellaneous commands and listener modules
 
-HealthStatus 3.0.0-ALPHA9
+HealthStatus 3.0.0-ALPHA10 - ALPHA11
 >>Displays a players health above their head.
 
-JoinSystem 3.0.0-ALPHA9
+JoinSystem 3.0.0-ALPHA10 - ALPHA11
 >>Pocketmine JoinSystem Plugin by @McpeBooster
 
-KillCash 3.0.0-ALPHA9
+KillCash 3.0.0-ALPHA10 - ALPHA11
 >>Give Money vs Kill
 
 KitUI 3.0.0-ALPHA10 - ALPHA11
@@ -61,7 +61,7 @@ Multi-Inv 3.0.0-Alpha10 - ALPHA11
 
 >>Simple inventory plugin for PocketMine-MP. Allows for players to have seperate inventory's in each world.
 
-PVPlevelRPG 2.0.0 - 3.0.0-ALPHA9
+PVPlevelRPG 3.0.0-ALPHA10 - ALPHA11
 >>A leveling system.
 
 PeacefulSpawn 3.0.0-Alpha10 - ALPHA11
@@ -110,7 +110,7 @@ SuperVanish 3.0.0-Alpha10 - ALPHA11
 TapToDo 3.0.0-ALPHA10 - ALPHA11
 >>The oldest Plugin out there, TapToDo.
 
-TeaSpoon 3.0.0-ALPHA9
+TeaSpoon 3.0.0-ALPHA10 - ALPHA11
 >>A old version of TeaSpoon. Uploading newer version soon.
 
 Texter 3.0.0-ALPHA10 - ALPHA11
