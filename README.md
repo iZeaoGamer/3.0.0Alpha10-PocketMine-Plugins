@@ -74,6 +74,7 @@ PerWorldChat 3.0.0-Alpha10 - ALPHA11
 
 PlayerVaults 3.0.0-ALPHA10 - ALPHA11
 >>A Playervaults plugin, being one of the best PlayerVaults plugins for MCPE. Always supports the latest commits of Pocketmine, latest builds, and latest codes out there.
+
 ProfileUI 3.0.0-ALPHA10 - ALPHA11
 >>Checks Profiles using a UI.
 
